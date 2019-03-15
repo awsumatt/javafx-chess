@@ -20,14 +20,14 @@ JavaFX chess uses object oriented programming to play a variety of chess variant
 ## Plan
 - Week 1
 
-  1. Research chess rules and variants
-  2. Start working on design
+  - Research chess rules and variants
+  - Start working on design
 
 - Week 2
 
-  1. Game board backend
-  2. Piece superclass
-  3. Subclass for each piece
+  - Game board backend
+  - Piece superclass
+  - Subclass for each piece
 
 ## Team
 - Matt Jones, Programmer
