@@ -28,6 +28,14 @@ public int[][] getLoc(){
 	return location;
 }
 
+public int getX(){
+	return location[0];
+}
+
+public int getY(){
+	return location[0][0];
+}
+
 public inplay(){
 	return inPlay;
 }
