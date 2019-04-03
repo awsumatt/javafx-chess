@@ -1,11 +1,10 @@
 package com.javafxChess.pieces;
 
 
-
 public abstract class Piece{
 
-/** Location of a piece [x][y] */
-private int[] location = new int[2];
+/** Location of a piece {x, y} */
+protected int[] location = new int[2];
 /** true=white team, false=black team */
 private boolean team;
 /** Whether or not a piece has been capture by the opposing team */
@@ -41,7 +40,7 @@ public Boolean inplay(){
 }
 
 
-public abstract Boolean move();
+public abstract Boolean move(int[] loc);
 
 public abstract int[][] getPosMoves();
 
