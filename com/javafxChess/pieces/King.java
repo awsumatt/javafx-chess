@@ -7,4 +7,12 @@ public class King extends Piece{
 		super(team, location);
 	}
 
+	/**
+	*@return True if move valid, false otherwise
+	*/
+	public boolean move(int[][] board){
+		
+		 return false;
+	}
+
 }
