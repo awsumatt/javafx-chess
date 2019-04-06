@@ -19,6 +19,15 @@ public Piece(boolean team, int[] location){
 	check = false;
 }
 
+/*
+* Used to initialize piece in default location
+*/
+public Piece(boolean team){
+	this.team = team;
+	inPlay = true;
+	check = false;
+}
+
 public boolean getTeam(){
 	return team;
 }
