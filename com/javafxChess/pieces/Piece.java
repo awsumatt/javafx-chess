@@ -12,6 +12,12 @@ private boolean inPlay;
 /** Whether or not a piece is putting a king in check */
 private boolean check;
 
+/**
+*Initializes a piece with a specific location
+*
+*@param team true=white team, false=black team
+*@param location Location in (x,y) format
+*/
 public Piece(boolean team, int[] location){
 	this.team = team;
 	this.location = location;
@@ -19,8 +25,10 @@ public Piece(boolean team, int[] location){
 	check = false;
 }
 
-/*
-* Used to initialize piece in default location
+/**
+*Initializes a piece in its default location
+*
+*@param team true=white team, false=black team
 */
 public Piece(boolean team){
 	this.team = team;
