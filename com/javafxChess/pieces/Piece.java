@@ -52,12 +52,45 @@ public int getY(){
 	return location[1];
 }
 
-public Boolean inplay(){
+public boolean inplay(){
 	return inPlay;
 }
 
-public abstract Boolean move(int[] loc);
+public boolean moveValid(int[] loc, Piece[][] board){
+	int xStart;
+	int xEnd;
+	int yStart;
+	int yEnd;
 
-public abstract int[][] getPosMoves();
+	if(board[loc[0]][loc[1]].getTeam() != team || board[loc[0]][loc[1]] == null){
+		if(loc[0]<this.getX()){
+			xStart = loc[0];
+			xEnd = this.getX();
+		} else{
+			xStart = this.getX();
+			xEnd = loc[0];
+		}
+		if(loc[1]<this.getY()){
+			yStart = loc[1];
+			yEnd = this.getY();
+		} else{
+			yStart = this.getY();
+			yEnd = loc[1];
+		}
+
+		for (int i=xStart; i<xEnd; i++) {
+			for (int j=yStart; j<yEnd; j++) {
+					if(board[i][j] instanceof Piece){
+						return false;
+					}
+			}
+		}
+		return true;
+	}
+	return false;
+}
+
+public abstract boolean move(int[] loc);
+
 
 }
