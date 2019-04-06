@@ -63,21 +63,30 @@ public boolean moveValid(int[] loc, Piece[][] board){
 	int yEnd;
 
 	if(board[loc[0]][loc[1]].getTeam() != team || board[loc[0]][loc[1]] == null){
+
+		//If-Else block determines where to start the for loop along the move path
 		if(loc[0]<this.getX()){
-			xStart = loc[0];
+			xStart = loc[0]+1;
 			xEnd = this.getX();
-		} else{
-			xStart = this.getX();
+		} else if(loc[0]>this.getX()){
+			xStart = this.getX()+1;
+			xEnd = loc[0];
+		} else {
+			xStart = this.getX()+1;
 			xEnd = loc[0];
 		}
 		if(loc[1]<this.getY()){
-			yStart = loc[1];
+			yStart = loc[1]+1;
 			yEnd = this.getY();
-		} else{
+		} else if(loc[1]>this.getY()){
+			yStart = this.getY()+1;
+			yEnd = loc[1];
+		} else {
 			yStart = this.getY();
 			yEnd = loc[1];
 		}
 
+		//Checks if there are pieces blocking the move path
 		for (int i=xStart; i<xEnd; i++) {
 			for (int j=yStart; j<yEnd; j++) {
 					if(board[i][j] instanceof Piece){
