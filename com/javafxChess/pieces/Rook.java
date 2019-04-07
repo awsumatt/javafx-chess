@@ -1,33 +1,68 @@
 package com.javafxChess.pieces;
 
+import java.util.ArrayList;
+
 public class Rook extends Piece{
 	private Boolean canCastle;
-
-	Rook(boolean team, int[] location) {
+	
+	/**
+	*Initializes rook with a specific location
+	*
+	*@param team true=white team, false=black team
+	*@param location Location in (x,y) format
+	*/
+	public Rook(boolean team, int[] location) {
 		super(team, location);
 		this.setName("Rook");
 		canCastle = true;
 	}
-
+	
+	/**
+	 * @param loc Location to move the piece
+	 * @param board The board the piece is on
+	 * 
+	 * @return True if the move is valid, false otherwise
+	 */
 	@Override
-	public boolean move(int[] loc, Piece[][] board, MoveLog log) {
-		if(super.getX() == loc[0] && super.getY() != loc[1]) {;
-			super.location[1] = loc[1];
-			canCastle = false;
-			return true;
-		} else if(super.getX() != loc[0] && super.getY() == loc[1]) {
-			super.location[0] = loc[0];;
+	public boolean move(int[] loc, Piece[][] board) {
+		if(canMove(loc, board)) {
+			location = loc;
 			canCastle = false;
 			return true;
 		}
 		return false;
 	}
-
+	
+	public int[][] getPosMoves(Piece[][] board) {
+		ArrayList<int[]> moves = new ArrayList<>();
+		for(int i = 0; i < 7; i++) {
+			for(int j = 0; j < 7; j++) {
+				int[] e = {i, j};
+				if(canMove(e, board)) {
+					moves.add(e);
+				}
+			}
+		}
+		return (int[][]) moves.toArray();
+	}
+	
 	public Boolean getCanCastle() {
 		return canCastle;
 	}
 
-	public String getSide() {
-		return side;
+	public char getSide() {
+		if(location[0] < 5) {
+			return 'q';
+		}
+		return 'k';
+	}
+	
+	private boolean canMove(int[] loc, Piece[][] board) {
+		if(getX() == loc[0] && getY() != loc[1] && moveValid(loc, board)) {;
+			return true;
+		} else if(getX() != loc[0] && getY() == loc[1] && moveValid(loc, board)) {
+			return true;
+		}
+		return false;
 	}
 }
