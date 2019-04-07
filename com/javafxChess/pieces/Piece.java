@@ -73,8 +73,8 @@ public abstract class Piece{
 	/** Takes a piece out of play if a piece moves into its place */
 	public void ifEnemyRemove(int[] loc, Piece[][] board, MoveLog log){
 		if(board[loc[0]][loc[1]].getTeam() != team){
-			board[loc[0]][loc[1]].remove();
-			log.captureToString(this, board[loc[0]][loc[1]]);
+			board[loc[0]][loc[1]].remove(); //Takes piece out of play
+			log.captureToString(this, board[loc[0]][loc[1]]);//Logs the capture
 			board[loc[0]][loc[1]]=null;
 		}
 	}
@@ -122,7 +122,17 @@ public abstract class Piece{
 		return false;
 	}
 
+	/** Feed current or proposed location of the King */
+	public boolean canCheck(int[] loc, Piece[][] board){ //Must do as generic location to allow make it able to add to move validation for king
+		if(canMove(loc, board)){
+			check = true;
+			return true;
+		}
+		check = false;
+		return false;
+	}
+
 	public abstract boolean move(int[] loc, Piece[][] board, MoveLog log);
 
-	public abstract int[][] getPosMoves();
+	public abstract boolean canMove(int[] loc, Piece[][] board);
 }
