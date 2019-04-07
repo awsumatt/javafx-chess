@@ -52,6 +52,11 @@ public class MoveLog{
 		}
 	}
 
+	@Override
+	public void close(){
+		writer.close();
+	}
+
 	/** Translates the move into a string */
 	public String moveToString(Piece piece, int[] startLoc, int[] endLoc){
 		StringBuilder move = new StringBuilder();
