@@ -5,7 +5,7 @@ import java.lang.Math;
 public class Bishop extends Piece{
 
 	/**
-	*Initializes queen with a specific location
+	*Initializes bishop with a specific location
 	*
 	*@param team true=white team, false=black team
 	*@param location Location in (x,y) format

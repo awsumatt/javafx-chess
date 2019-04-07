@@ -5,7 +5,7 @@ import java.lang.Math;
 public class Knight extends Piece{
 
 	/**
-	*Initializes queen with a specific location
+	*Initializes knight with a specific location
 	*
 	*@param team true=white team, false=black team
 	*@param location Location in (x,y) format
