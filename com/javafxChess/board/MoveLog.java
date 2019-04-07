@@ -17,7 +17,7 @@ public class MoveLog{
 		writer = new PrintWriter(logFile);
 	}
 
-	public String makeNewLog(){
+	private String makeNewLog(){
 		int num;
 		String logName;
 		Scanner input = new Scanner(gameNum);
@@ -35,16 +35,16 @@ public class MoveLog{
 
 
 	//These two are conversions for board coordinates
-	public int numToNum(int y){
+	private int numToNum(int y){
 		return 8-y;
 	}
 
-	public char numToChar(int x){
+	private char numToChar(int x){
 		return x+65;
 	}
 
 	/** Converts team boolean to string */
-	public String boolToTeam(boolean team){
+	private String boolToTeam(boolean team){
 		if(team){
 			return "White";
 		} else{
