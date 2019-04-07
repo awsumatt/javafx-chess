@@ -43,7 +43,7 @@ public class Knight extends Piece{
 	@Override
 	public boolean move(int[] loc, Piece[][] board, MoveLog log){
 		if(moveValid(loc, board)){
-			if((xLength(loc)==1 && yLength(loc)==2) || (xLength(loc)==2 && yLength(loc)==1)){
+			if(canMove(loc, board)){
 				board[this.getX()][this.getY()]=null;
 				log.moveToString(this, location, loc);
 				location=loc;
@@ -55,6 +55,14 @@ public class Knight extends Piece{
 		return false;
 	}
 
-
+	@Override
+	public boolean canMove(int[] loc, Piece[][] board){
+		if(moveValid(loc, board)){
+			if((xLength(loc)==1 && yLength(loc)==2) || (xLength(loc)==2 && yLength(loc)==1)){
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
