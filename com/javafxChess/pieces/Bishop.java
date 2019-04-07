@@ -28,8 +28,9 @@ public class Bishop extends Piece{
 		if(moveValid(loc, board)){
 			if(Math.abs(loc[0]-super.getX())==Math.abs(loc[1]-super.getY())){ //Diagonal
 				board[this.getX()][this.getY()]=null;
+				log.moveToString(this, location, loc);
 				location=loc;
-				ifEnemyRemove(loc, board);
+				ifEnemyRemove(loc, board, log);
 				board[this.getX()][this.getY()]=this;
 				return true;
 			}

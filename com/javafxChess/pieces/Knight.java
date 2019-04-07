@@ -44,9 +44,9 @@ public class Knight extends Piece{
 		if(moveValid(loc, board)){
 			if((xLength(loc)==1 && yLength(loc)==2) || (xLength(loc)==2 && yLength(loc)==1)){
 				board[this.getX()][this.getY()]=null;
-
+				log.moveToString(this, location, loc);
 				location=loc;
-				ifEnemyRemove(loc, board);
+				ifEnemyRemove(loc, board, log);
 				board[this.getX()][this.getY()]=this;
 				return true;
 			}

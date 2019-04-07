@@ -44,20 +44,23 @@ public class Queen extends Piece{
 		if(moveValid(loc, board)){
 			if(super.getX()==loc[0]){ //Vertical
 				board[this.getX()][this.getY()]=null;
+				log.moveToString(this, location, loc);
 				location=loc;
-				ifEnemyRemove(loc, board);
+				ifEnemyRemove(loc, board, log);
 				board[this.getX()][this.getY()]=this;
 				return true;
 			} else if(super.getY()==loc[1]){ //Horizontal
 				board[this.getX()][this.getY()]=null;
+				log.moveToString(this, location, loc);
 				location=loc;
-				ifEnemyRemove(loc, board);
+				ifEnemyRemove(loc, board, log);
 				board[this.getX()][this.getY()]=this;
 				return true;
 			} else if(Math.abs(loc[0]-super.getX())==Mathh.abs(loc[1]-super.getY())){ //Diagonal
 				board[this.getX()][this.getY()]=null;
+				log.moveToString(this, location, loc);
 				location=loc;
-				ifEnemyRemove(loc, board);
+				ifEnemyRemove(loc, board, log);
 				board[this.getX()][this.getY()]=this;
 				return true;
 			}
