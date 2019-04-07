@@ -79,7 +79,7 @@ public abstract class Piece{
 		}
 	}
 
-	public boolean moveValid(int[] loc, Piece[][] board){
+	public boolean pathBlocked(int[] loc, Piece[][] board){
 		int xStart;
 		int xEnd;
 		int yStart;
@@ -91,21 +91,16 @@ public abstract class Piece{
 			if(loc[0]<this.getX()){
 				xStart = loc[0]+1;
 				xEnd = this.getX();
-			} else if(loc[0]>this.getX()){
-				xStart = this.getX()+1;
-				xEnd = loc[0];
-			} else {
+			} else{
 				xStart = this.getX()+1;
 				xEnd = loc[0];
 			}
+
 			if(loc[1]<this.getY()){
 				yStart = loc[1]+1;
 				yEnd = this.getY();
-			} else if(loc[1]>this.getY()){
+			} else{
 				yStart = this.getY()+1;
-				yEnd = loc[1];
-			} else {
-				yStart = this.getY();
 				yEnd = loc[1];
 			}
 
@@ -113,14 +108,15 @@ public abstract class Piece{
 			for (int i=xStart; i<xEnd; i++) {
 				for (int j=yStart; j<yEnd; j++) {
 					if(board[i][j] instanceof Piece){
-						return false;
+						return true;
 					}
 				}
 			}
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
+
 
 	/** Feed current or proposed location of the King */
 	public boolean canCheck(int[] loc, Piece[][] board){ //Must do as generic location to allow make it able to add to move validation for king
@@ -134,5 +130,5 @@ public abstract class Piece{
 
 	public abstract boolean move(int[] loc, Piece[][] board, MoveLog log);
 
-	public abstract boolean canMove(int[] loc, Piece[][] board);
+	public abstract boolean moveValid(int[] loc, Piece[][] board);
 }

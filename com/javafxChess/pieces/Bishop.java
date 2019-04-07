@@ -27,26 +27,26 @@ public class Bishop extends Piece{
 	@Override
 	public boolean move(int[] loc, Piece[][] board, MoveLog log){
 		if(moveValid(loc, board)){
-			if(canMove(loc, board)){ //Diagonal
-				board[this.getX()][this.getY()]=null;
-				log.moveToString(this, location, loc);
-				location=loc;
-				ifEnemyRemove(loc, board, log);
-				board[this.getX()][this.getY()]=this;
-				return true;
-			}
+			board[this.getX()][this.getY()]=null;
+			log.moveToString(this, location, loc);
+			location=loc;
+			ifEnemyRemove(loc, board, log);
+			board[this.getX()][this.getY()]=this;
+			return true;
+
 		}
 		return false;
 	}
 
 
 	@Override
-	public boolean canMove(int[] loc, Piece[][] board){
-		if(moveValid(loc, board)){
-			if(Math.abs(loc[0]-this.getX())==Math.abs(loc[1]-this.getY())){ //Diagonal
+	public boolean moveValid(int[] loc, Piece[][] board){
+		if(pathBlocked(loc, board)){
+			if(Math.abs(loc[0]-super.getX())==Math.abs(loc[1]-super.getY())){ //Diagonal
 				return true;
 			}
 		}
+
 		return false;
 	}
 

@@ -16,15 +16,7 @@ public class Knight extends Piece{
 		this.setName("Knight");
 	}
 
-	@Override //Needs different move validation because of ability to jump pieces
-	public boolean moveValid(int[] loc, Piece[][] board){
-		if(board[loc[0]][loc[1]].getTeam() != super.getTeam() || board[loc[0]][loc[1]] == null){
-			return true;
-		}
-		return false;
-	}
-
-	// Move length calculators for move validation
+	// Move length calculators for Knight move validation
 	private int yLength(int[] loc){
 		return Math.abs(this.getY()-loc[1]);
 	}
@@ -43,21 +35,19 @@ public class Knight extends Piece{
 	@Override
 	public boolean move(int[] loc, Piece[][] board, MoveLog log){
 		if(moveValid(loc, board)){
-			if(canMove(loc, board)){
-				board[this.getX()][this.getY()]=null;
-				log.moveToString(this, location, loc);
-				location=loc;
-				ifEnemyRemove(loc, board, log);
-				board[this.getX()][this.getY()]=this;
-				return true;
-			}
+			board[this.getX()][this.getY()]=null;
+			log.moveToString(this, location, loc);
+			location=loc;
+			ifEnemyRemove(loc, board, log);
+			board[this.getX()][this.getY()]=this;
+			return true;
 		}
 		return false;
 	}
 
 	@Override
-	public boolean canMove(int[] loc, Piece[][] board){
-		if(moveValid(loc, board)){
+	public boolean moveValid(int[] loc, Piece[][] board){
+		if(board[loc[0]][loc[1]].getTeam() != super.getTeam() || board[loc[0]][loc[1]] == null){
 			if((xLength(loc)==1 && yLength(loc)==2) || (xLength(loc)==2 && yLength(loc)==1)){
 				return true;
 			}
