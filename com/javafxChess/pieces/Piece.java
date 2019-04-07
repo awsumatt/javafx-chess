@@ -56,7 +56,17 @@ public abstract class Piece{
 		return inPlay;
 	}
 
+	public void remove(){
+		inPlay = false;
+	}
 
+	/** Takes a piece out of play if a piece moves into its place */
+	public void ifEnemyRemove(int[] loc, Piece[][] board){
+		if(board[loc[0]][loc[1]].getTeam() != team){
+			board[loc[0]][loc[1]].remove();
+			board[loc[0]][loc[1]]=null;
+		}
+	}
 
 	public boolean moveValid(int[] loc, Piece[][] board){
 		int xStart;
