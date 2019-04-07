@@ -13,6 +13,7 @@ public class Knight extends Piece{
 	*/
 	public Knight(boolean team, int[] location){
 		super(team, location);
+		this.setName("Knight");
 	}
 
 	@Override //Needs different move validation because of ability to jump pieces

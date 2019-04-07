@@ -11,6 +11,7 @@ public class Pawn extends Piece{
 	*/
 	public Pawn(boolean team, int[] location){
 		super(team, location);
+		this.setName("Pawn");
 	}
 
 

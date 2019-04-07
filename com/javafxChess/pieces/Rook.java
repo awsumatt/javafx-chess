@@ -5,6 +5,7 @@ public class Rook extends Piece{
 
 	Rook(boolean team, int[] location) {
 		super(team, location);
+		this.setName("Rook");
 		canCastle = true;
 	}
 

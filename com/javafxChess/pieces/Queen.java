@@ -12,6 +12,7 @@ public class Queen extends Piece{
 	*/
 	public Queen(boolean team, int[] location){
 		super(team, location);
+		this.setName("Queen");
 	}
 
 	/**

@@ -11,6 +11,8 @@ public abstract class Piece{
 	private boolean inPlay;
 	/** Whether or not a piece is putting a king in check */
 	private boolean check;
+	/** Name for move log */
+	private String name;
 
 	/**
 	*Initializes a piece with a specific location
@@ -58,6 +60,15 @@ public abstract class Piece{
 
 	public void remove(){
 		inPlay = false;
+	}
+
+	public void setName(Sting name){
+		this.name = name;
+	}
+
+	@Override
+	public String toString(){
+		return name;
 	}
 
 	/** Takes a piece out of play if a piece moves into its place */
