@@ -21,10 +21,10 @@ public class King extends Piece{
 	public King(boolean team){
 		super(team);
 		if(team){ //White team default location
-			location[0] = 3;
+			location[0] = 4;
 			location[1] = 7;
 		} else { //Black team default location
-			location[0] = 3;
+			location[0] = 4;
 			location[1] = 0;
 		}
 
