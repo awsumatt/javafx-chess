@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Rook extends Piece{
 	private Boolean canCastle;
-	
+
 	/**
 	*Initializes rook with a specific location
 	*
@@ -16,11 +16,11 @@ public class Rook extends Piece{
 		this.setName("Rook");
 		canCastle = true;
 	}
-	
+
 	/**
 	 * @param loc Location to move the piece
 	 * @param board The board the piece is on
-	 * 
+	 *
 	 * @return True if the move is valid, false otherwise
 	 */
 	@Override
@@ -32,7 +32,7 @@ public class Rook extends Piece{
 		}
 		return false;
 	}
-	
+
 	public int[][] getPosMoves(Piece[][] board) {
 		ArrayList<int[]> moves = new ArrayList<>();
 		for(int i = 0; i < 7; i++) {
@@ -45,7 +45,7 @@ public class Rook extends Piece{
 		}
 		return (int[][]) moves.toArray();
 	}
-	
+
 	public Boolean getCanCastle() {
 		return canCastle;
 	}
@@ -56,7 +56,7 @@ public class Rook extends Piece{
 		}
 		return 'k';
 	}
-	
+	//TODO Sorry, changed the implementation on ya, I tried to make sure you hadn't changed anything before I oficially switched it but you pushed after i changed everything
 	private boolean canMove(int[] loc, Piece[][] board) {
 		if(getX() == loc[0] && getY() != loc[1] && moveValid(loc, board)) {;
 			return true;
