@@ -41,13 +41,19 @@ public class Queen extends Piece{
 	public boolean move(int[] loc, Piece[][] board){
 		if(moveValid(loc, board)){
 			if(super.getX()==loc[0]){ //Vertical
+				board[this.getX()][this.getY()]=null;
 				location=loc;
+				board[this.getX()][this.getY()]=this;
 				return true;
 			} else if(super.getY()==loc[1]){ //Horizontal
-				location = loc;
+				board[this.getX()][this.getY()]=null;
+				location=loc;
+				board[this.getX()][this.getY()]=this;
 				return true;
 			} else if(loc[0]-super.getX()==loc[1]-super.getY()){ //Diagonal
-				location = loc;
+				board[this.getX()][this.getY()]=null;
+				location=loc;
+				board[this.getX()][this.getY()]=this;
 				return true;
 			}
 		}
