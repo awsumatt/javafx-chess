@@ -1,6 +1,5 @@
 package com.javafxChess.pieces;
 
-
 public abstract class Piece{
 
 	/** Location of a piece {x, y} */
@@ -72,9 +71,10 @@ public abstract class Piece{
 	}
 
 	/** Takes a piece out of play if a piece moves into its place */
-	public void ifEnemyRemove(int[] loc, Piece[][] board){
+	public void ifEnemyRemove(int[] loc, Piece[][] board, moveLog log){
 		if(board[loc[0]][loc[1]].getTeam() != team){
 			board[loc[0]][loc[1]].remove();
+			log.captureToString(this, board[loc[0]][loc[1]]);
 			board[loc[0]][loc[1]]=null;
 		}
 	}
