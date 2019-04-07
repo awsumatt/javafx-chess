@@ -17,6 +17,7 @@ public class MoveLog{
 		writer = new PrintWriter(logFile);
 	}
 
+	/** Checks the game number, uses it to name the logfile, then sets new gameNumber for next game */
 	private String makeNewLog(){
 		int num;
 		String logName;
@@ -53,7 +54,7 @@ public class MoveLog{
 	}
 
 	@Override
-	public void close(){
+	public void close(){ //Closes log file and saves contents
 		writer.close();
 	}
 
