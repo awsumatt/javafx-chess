@@ -79,6 +79,14 @@ public abstract class Piece{
 		}
 	}
 
+	/**
+	*Checks move path to see if there are other pieces in the way
+	*
+	*@param loc Location player wants to move the piece
+	*@param board The board
+	*
+	*@return True if path blocked, false if path clear
+	*/
 	public boolean pathBlocked(int[] loc, Piece[][] board){
 		int xStart;
 		int xEnd;
@@ -118,6 +126,7 @@ public abstract class Piece{
 	}
 
 
+	//TODO Might get rid of this and just use move valid
 	/** Feed current or proposed location of the King */
 	public boolean canCheck(int[] loc, Piece[][] board){ //Must do as generic location to allow make it able to add to move validation for king
 		if(canMove(loc, board)){
@@ -128,7 +137,22 @@ public abstract class Piece{
 		return false;
 	}
 
+	/**
+	*@param loc Location player wants to move the piece
+	*@param board The board
+	*@param log Logger that the move will be stored in
+	*
+	*@return True if move valid, false otherwise
+	*/
 	public abstract boolean move(int[] loc, Piece[][] board, MoveLog log);
 
+	/**
+	*Checks if a move can be made
+	*
+	*@param loc Location player wants to move the piece
+	*@param board The board
+	*
+	*@return True if move possible, false otherwise
+	*/
 	public abstract boolean moveValid(int[] loc, Piece[][] board);
 }

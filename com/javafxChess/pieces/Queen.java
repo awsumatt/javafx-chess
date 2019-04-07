@@ -33,13 +33,6 @@ public class Queen extends Piece{
 	}
 
 
-	/**
-	*@param loc Location player wants to move the piece
-	*@param board The board
-	*@param log Logger that the move will be stored in
-	*
-	*@return True if move valid, false otherwise
-	*/
 	@Override
 	public boolean move(int[] loc, Piece[][] board, MoveLog log){
 		if(moveValid(loc, board)){

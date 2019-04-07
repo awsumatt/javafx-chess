@@ -2,7 +2,7 @@ package com.javafxChess.board;
 
 
 
-
+//This class might be temporary, we might merge it into the main program
 public static class Board{
 
 		public static Piece[][] makeBoard(){

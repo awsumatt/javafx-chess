@@ -7,11 +7,14 @@ import java.util.Scanner;
 
 public class MoveLog{
 
+	/** File where game number is stored */
 	final private File gameNum = "/logs/.gameNumber";
+	/** File where moves will be logged */
 	final private File logFile;
+	/** Writes moves to the log file */
 	final private PrintWriter writer;
 
-
+	/** Initializes a move log */
 	public MoveLog(){
 		logFile = makeNewLog();
 		writer = new PrintWriter(logFile);
@@ -53,8 +56,9 @@ public class MoveLog{
 		}
 	}
 
+	/** Closes log file and saves contents */
 	@Override
-	public void close(){ //Closes log file and saves contents
+	public void close(){
 		writer.close();
 	}
 
