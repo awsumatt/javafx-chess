@@ -71,7 +71,7 @@ public abstract class Piece{
 	}
 
 	/** Takes a piece out of play if a piece moves into its place */
-	public void ifEnemyRemove(int[] loc, Piece[][] board, moveLog log){
+	public void ifEnemyRemove(int[] loc, Piece[][] board, MoveLog log){
 		if(board[loc[0]][loc[1]].getTeam() != team){
 			board[loc[0]][loc[1]].remove();
 			log.captureToString(this, board[loc[0]][loc[1]]);
