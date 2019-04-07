@@ -38,13 +38,18 @@ public class Queen extends Piece{
 	*@return True if move valid, false otherwise
 	*/
 	@Override
-	public Boolean move(int[] loc, Piece[][] board){
-		if(super.getX()==loc[0] && (board[loc[0]][loc[1]].getTeam()!=super.getTeam() || board[loc[0]][loc[1]] == null)){ //Vertical
-			location=loc;
-			return true;
-		} else if(super.getY()==loc[1]){ //Horizontal
-			location = loc;
-			return true;
+	public boolean move(int[] loc, Piece[][] board){
+		if(moveValid(loc, board)){
+			if(super.getX()==loc[0]){ //Vertical
+				location=loc;
+				return true;
+			} else if(super.getY()==loc[1]){ //Horizontal
+				location = loc;
+				return true;
+			} else if(loc[0]-super.getX()==loc[1]-super.getY()){ //Diagonal
+				location = loc;
+				return true;
+			}
 		}
 		return false;
 	}
