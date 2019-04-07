@@ -24,7 +24,7 @@ public class Rook extends Piece{
 	 * @return True if the move is valid, false otherwise
 	 */
 	@Override
-	public boolean move(int[] loc, Piece[][] board) {
+	public boolean move(int[] loc, Piece[][] board) { //TODO Add MoveLog back in because that is how we will be able to log the moves
 		if(canMove(loc, board)) {
 			location = loc;
 			canCastle = false;
