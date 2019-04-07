@@ -40,7 +40,7 @@ public class Queen extends Piece{
 	*@return True if move valid, false otherwise
 	*/
 	@Override
-	public boolean move(int[] loc, Piece[][] board){
+	public boolean move(int[] loc, Piece[][] board, MoveLog log){
 		if(moveValid(loc, board)){
 			if(super.getX()==loc[0]){ //Vertical
 				board[this.getX()][this.getY()]=null;

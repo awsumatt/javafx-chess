@@ -10,7 +10,7 @@ public class Rook extends Piece{
 	}
 
 	@Override
-	public boolean move(int[] loc) {
+	public boolean move(int[] loc, Piece[][] board, MoveLog log) {
 		if(super.getX() == loc[0] && super.getY() != loc[1]) {;
 			super.location[1] = loc[1];
 			canCastle = false;

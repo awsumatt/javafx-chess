@@ -40,10 +40,11 @@ public class Knight extends Piece{
 	*@return True if move valid, false otherwise
 	*/
 	@Override
-	public boolean move(int[] loc, Piece[][] board){
+	public boolean move(int[] loc, Piece[][] board, MoveLog log){
 		if(moveValid(loc, board)){
 			if((xLength(loc)==1 && yLength(loc)==2) || (xLength(loc)==2 && yLength(loc)==1)){
 				board[this.getX()][this.getY()]=null;
+
 				location=loc;
 				ifEnemyRemove(loc, board);
 				board[this.getX()][this.getY()]=this;

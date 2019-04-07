@@ -5,14 +5,14 @@ import java.io.PrintWriter;
 import java.io.File;
 import java.util.Scanner;
 
-public class moveLog{
+public class MoveLog{
 
 	final private File gameNum = "/logs/.gameNumber";
 	final private File logFile;
 	final private PrintWriter writer;
 
 
-	public moveLog(){
+	public MoveLog(){
 		logFile = makeNewLog();
 		writer = new PrintWriter(logFile);
 	}

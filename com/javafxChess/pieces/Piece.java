@@ -122,7 +122,7 @@ public abstract class Piece{
 		return false;
 	}
 
-	public abstract boolean move(int[] loc);
+	public abstract boolean move(int[] loc, Piece[][] board, MoveLog log);
 
 	public abstract int[][] getPosMoves();
 }
