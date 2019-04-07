@@ -1,5 +1,5 @@
 package com.javafxChess.pieces;
-
+import java.lang.Math;
 
 public class Queen extends Piece{
 
@@ -52,7 +52,7 @@ public class Queen extends Piece{
 				ifEnemyRemove(loc, board);
 				board[this.getX()][this.getY()]=this;
 				return true;
-			} else if(loc[0]-super.getX()==loc[1]-super.getY()){ //Diagonal
+			} else if(Math.abs(loc[0]-super.getX())==Mathh.abs(loc[1]-super.getY())){ //Diagonal
 				board[this.getX()][this.getY()]=null;
 				location=loc;
 				ifEnemyRemove(loc, board);

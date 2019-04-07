@@ -1,4 +1,5 @@
 package com.javafxChess.pieces;
+import java.lang.Math;
 
 
 public class Bishop extends Piece{
@@ -23,7 +24,7 @@ public class Bishop extends Piece{
 	@Override
 	public boolean move(int[] loc, Piece[][] board){
 		if(moveValid(loc, board)){
-			if(loc[0]-super.getX()==loc[1]-super.getY()){ //Diagonal
+			if(Math.abs(loc[0]-super.getX())==Math.abs(loc[1]-super.getY())){ //Diagonal
 				board[this.getX()][this.getY()]=null;
 				location=loc;
 				ifEnemyRemove(loc, board);
