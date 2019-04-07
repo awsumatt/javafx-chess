@@ -1,4 +1,5 @@
 package com.javafxChess.pieces;
+
 import java.lang.Math;
 
 public class Queen extends Piece{
