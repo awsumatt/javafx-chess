@@ -61,7 +61,7 @@ public abstract class Piece{
 		inPlay = false;
 	}
 
-	public void setName(Sting name){
+	public void setName(String name){
 		this.name = name;
 	}
 
