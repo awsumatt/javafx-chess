@@ -1,6 +1,6 @@
 package com.javafxChess.pieces;
 
-import java.util.ArrayList;
+import com.javafxChess.board.MoveLog;
 
 public class Pawn extends Piece{
 	private boolean firstMove = true;
@@ -17,37 +17,34 @@ public class Pawn extends Piece{
 	}
 
 	@Override
-	public boolean move(int[] loc, Piece[][] board) {
-		if(canMove(loc, board)) {
+	public boolean move(int[] loc, Piece[][] board, MoveLog log) {
+		if(moveValid(loc, board)) {
+			board[this.getX()][this.getY()] = null;
+			log.moveToString(this, location, loc);
 			location = loc;
+			ifEnemyRemove(loc, board, log);
+			board[this.getX()][this.getY()] = this;
 			firstMove = false;
 			return true;
 		}
 		return false;
 	}
-
-	@Override
-	public int[][] getPosMoves(Piece[][] board) {
-		ArrayList<int[]> moves = new ArrayList<>();
-		for(int i = 0; i < 7; i++) {
-			for(int j = 0; j < 7; j++) {
-				int[] e = {i, j};
-				if(canMove(e, board)) {
-					moves.add(e);
-				}
-			}
-		}
-		return (int[][]) moves.toArray();
-	}
 	
-	private boolean canMove(int[] loc, Piece[][] board) {
+	public boolean moveValid(int[] loc, Piece[][] board) {
+		int dir;
+		if(this.getTeam()) {
+			dir = 1;
+		} else {
+			dir = -1;
+		}
 		if(firstMove) {
-			if(loc[0] == location[0] && loc[1] == location[1] + 2) {
+			if(loc[0] == location[0] && loc[1] == location[1] + 2 * dir) {
 				return true;
 			}
 		}
-		if((loc[0] == location[0] && loc[1] == location[1] + 1) ||
-		  ((loc[0] == location[0] + 1 || loc[0] == location[0] - 1) && loc[1] == location[1] + 1) && board[loc[0]][loc[1]] != null) {
+		if((loc[0] == location[0] && loc[1] == location[1] + dir) ||
+		  ((loc[0] == location[0] + 1 || loc[0] == location[0] - 1) && loc[1] == location[1] + dir &&
+		  board[loc[0]][loc[1]] != null && board[loc[0]][loc[1]].getTeam() != this.getTeam())) {
 			return true;
 		}
 		return false;
