@@ -1,6 +1,6 @@
 package com.javafxChess.pieces;
 
-import java.util.ArrayList;
+import com.javafxChess.board.MoveLog;
 
 public class Rook extends Piece{
 	private Boolean canCastle;
@@ -24,26 +24,18 @@ public class Rook extends Piece{
 	 * @return True if the move is valid, false otherwise
 	 */
 	@Override
-	public boolean move(int[] loc, Piece[][] board) { //TODO Add MoveLog back in because that is how we will be able to log the moves
-		if(canMove(loc, board)) {
+	public boolean move(int[] loc, Piece[][] board, MoveLog log) { 
+		if(moveValid(loc, board)){
+			board[this.getX()][this.getY()] = null;
+			log.moveToString(this, location, loc);
 			location = loc;
+			ifEnemyRemove(loc, board, log);
+			board[this.getX()][this.getY()] = this;
 			canCastle = false;
 			return true;
+
 		}
 		return false;
-	}
-
-	public int[][] getPosMoves(Piece[][] board) {
-		ArrayList<int[]> moves = new ArrayList<>();
-		for(int i = 0; i < 7; i++) {
-			for(int j = 0; j < 7; j++) {
-				int[] e = {i, j};
-				if(canMove(e, board)) {
-					moves.add(e);
-				}
-			}
-		}
-		return (int[][]) moves.toArray();
 	}
 
 	public Boolean getCanCastle() {
@@ -56,12 +48,14 @@ public class Rook extends Piece{
 		}
 		return 'k';
 	}
-	//TODO Sorry, changed the implementation on ya, I tried to make sure you hadn't changed anything before I oficially switched it but you pushed after i changed everything
-	private boolean canMove(int[] loc, Piece[][] board) {
-		if(getX() == loc[0] && getY() != loc[1] && moveValid(loc, board)) {;
-			return true;
-		} else if(getX() != loc[0] && getY() == loc[1] && moveValid(loc, board)) {
-			return true;
+
+	public boolean moveValid(int[] loc, Piece[][] board) {
+		if(pathBlocked(loc, board)) {
+			if(getX() == loc[0] && getY() != loc[1] && moveValid(loc, board)) {;
+				return true;
+			} else if(getX() != loc[0] && getY() == loc[1] && moveValid(loc, board)) {
+				return true;
+			}
 		}
 		return false;
 	}
