@@ -19,11 +19,11 @@ public class runner {
 			System.out.print("Enter start position (x \"enter\" y): ");
 			s[0] = in.nextInt();
 			s[1] = in.nextInt();
-			
+
 			System.out.print("Enter end position (x \"enter\" y): ");
 			e[0] = in.nextInt();
 			e[1] = in.nextInt();
-			if(team == b[s[0]][s[1]].getTeam() && 
+			if(team == b[s[0]][s[1]].getTeam() &&
 					b[s[0]][s[1]].move(e, b, log)) {
 				System.out.println("Valid move");
 				team = !team;
