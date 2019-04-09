@@ -1,6 +1,4 @@
-import com.javafxChess.board.Board;
-import com.javafxChess.board.MoveLog;
-import com.javafxChess.pieces.Piece;
+
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
