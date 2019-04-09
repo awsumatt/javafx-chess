@@ -1,4 +1,4 @@
-
+package com.javafxChess;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
