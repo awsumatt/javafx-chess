@@ -30,7 +30,7 @@ public class MoveLog{
 
 		num = input.nextInt();
 		input.close();
-		logName = new File("chess"+num+".txt");
+		logName = new File("logs/chess"+num+".txt");
 		num+=1;
 
 		PrintWriter write = new PrintWriter(gameNum);
