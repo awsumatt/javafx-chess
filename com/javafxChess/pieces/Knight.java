@@ -42,7 +42,7 @@ public class Knight extends Piece{
 
 	@Override
 	public boolean moveValid(int[] loc, Piece[][] board){
-		if(board[loc[0]][loc[1]].getTeam() != super.getTeam() || board[loc[0]][loc[1]] == null){
+		if(board[loc[0]][loc[1]] == null /*|| board[loc[0]][loc[1]].getTeam() != super.getTeam()*/){
 			if((xLength(loc)==1 && yLength(loc)==2) || (xLength(loc)==2 && yLength(loc)==1)){
 				return true;
 			}
