@@ -72,12 +72,24 @@ public abstract class Piece{
 		return name;
 	}
 
+	public boolean spaceClear(int[] loc, Piece[][] board){
+		if(board[loc[0]][loc[1]] == null){
+			return true;
+		}
+		if (board[loc[0]][loc[1]].getTeam() != this.getTeam()) {
+			return true;
+		}
+		return false;
+	}
+
 	/** Takes a piece out of play if a piece moves into its place */
 	public void ifEnemyRemove(int[] loc, Piece[][] board, MoveLog log){
-		if(board[loc[0]][loc[1]].getTeam() != team){
-			board[loc[0]][loc[1]].remove(); //Takes piece out of play
-			log.captureToString(this, board[loc[0]][loc[1]]);//Logs the capture
-			board[loc[0]][loc[1]]=null;
+		if(board[loc[0]][loc[1]]!=null){
+			if(board[loc[0]][loc[1]].getTeam() != team){
+				board[loc[0]][loc[1]].remove(); //Takes piece out of play
+				log.captureToString(this, board[loc[0]][loc[1]]);//Logs the capture
+				board[loc[0]][loc[1]]=null;
+			}
 		}
 	}
 
@@ -87,7 +99,7 @@ public abstract class Piece{
 	*@param loc Location player wants to move the piece
 	*@param board The board
 	*
-	*@return True if path blocked, false if path clear
+	*@return false if path blocked, true if path clear
 	*/
 	public boolean pathBlocked(int[] loc, Piece[][] board){
 		int xStart;
@@ -95,7 +107,7 @@ public abstract class Piece{
 		int yStart;
 		int yEnd;
 
-		if(board[loc[0]][loc[1]].getTeam() != team || board[loc[0]][loc[1]] == null){
+		if(spaceClear(loc, board)){
 
 			//If-Else block determines where to start the for loop along the move path
 			if(loc[0]<this.getX()){
