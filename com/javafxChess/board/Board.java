@@ -5,7 +5,7 @@ import com.javafxChess.pieces.*;
 
 
 //This class might be temporary, we might merge it into the main program
-public static class Board{
+public class Board{
 
 		public static Piece[][] makeBoard(){
 			return new Piece[8][8];
