@@ -1,5 +1,9 @@
+
 package com.javafxChess;
 
+
+import javafx.scene.control.TableView;
+import javafx.scene.control.ListView;
 import java.io.FileNotFoundException;
 import com.javafxChess.board.*;
 import com.javafxChess.pieces.*;
@@ -17,6 +21,9 @@ public class Controller implements Initializable
 	private boolean turn = true;
 	private Piece[][] board;
 	private MoveLog log;
+	@FXML
+	private TableView table;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -29,5 +36,7 @@ public class Controller implements Initializable
 			board = Board.makeBoard();
 			Board.initializeBoard(board);
 			log = new MoveLog();
+
+
 		}
 }
