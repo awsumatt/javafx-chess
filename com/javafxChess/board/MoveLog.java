@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 public class MoveLog{
 
 	/** File where game number is stored */
-	final private File gameNum = new File("\\logs\\.gameNumber");
+	final private File gameNum = new File("logs/.gameNumber");
 	/** File where moves will be logged */
 	final private File logFile;
 	/** Writes moves to the log file */
