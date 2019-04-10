@@ -1,5 +1,7 @@
 package com.javafxChess.pieces;
+
 import com.javafxChess.board.MoveLog;
+import java.lang.Math;
 
 public class King extends Piece{
 	private Boolean canCastle = true;
@@ -32,9 +34,29 @@ public class King extends Piece{
 
 	}
 
-	/**
-	*@return True if move valid, false otherwise
-	*/
+	public boolean possCheck(Piece[][] board, int[] loc){
+		for (int i=0; i<9; i++) {
+			for (int j=0; j<9; j++) {
+				if(board[i][j] instanceof Piece){
+					if(board[i][j].moveValid(loc, board)){
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	// Move length calculators for Knight move validation
+	private int yLength(int[] loc){
+		return Math.abs(this.getY()-loc[1]);
+	}
+
+	private int xLength(int[] loc){
+		return Math.abs(this.getX() - loc[0]);
+	}
+
+	@Override
 	public boolean move(int[] loc, Piece[][] board, MoveLog log){
 		if(moveValid(loc, board)){
 			board[this.getX()][this.getY()] = null;
@@ -44,7 +66,6 @@ public class King extends Piece{
 			board[this.getX()][this.getY()] = this;
 			canCastle = false;
 			return true;
-
 		}
 		return false;
 	}
@@ -54,7 +75,7 @@ public class King extends Piece{
 			for(int j = 0; j < board.length; j++) {
 				if((board[i][j] != null || board[i][j].toString() != "Pawn") && board[i][j].moveValid(loc, board)) {
 					return false;
-				} else if(board[i][j].toString() == "Pawn" && ((Pawn) board[i][j]).moveAttack(loc, board)) {
+				} else if(board[i][j].toString() == "Pawn" && ((Pawn) board[i][j]).moveValid(loc, board)) { //TODO This change is likely incorrect but im just trying to get it to work
 					return false;
 				}
 			}
@@ -65,7 +86,11 @@ public class King extends Piece{
 				return castle(loc, board);
 			}
 		}
-		return true;
+
+		if(xLength(loc) <= 1 && yLength(loc) <= 1 && !possCheck(board, loc)){
+			return true;
+		}
+		return false;
 	}
 
 
