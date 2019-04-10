@@ -2,7 +2,6 @@
 package com.javafxChess.pieces;
 
 import com.javafxChess.board.MoveLog;
-import java.util.ArrayList;
 
 public class Pawn extends Piece{
 	private boolean firstMove = true;
@@ -28,29 +27,15 @@ public class Pawn extends Piece{
 		return false;
 	}
 
-	/**@Override
-	public int[][] getPosMoves(Piece[][] board) {
-		ArrayList<int[]> moves = new ArrayList<>();
-		for(int i = 0; i < 7; i++) {
-			for(int j = 0; j < 7; j++) {
-				int[] e = {i, j};
-				if(canMove(e, board)) {
-					moves.add(e);
-				}
-			}
-		}
-		return (int[][]) moves.toArray();
-	}*/
-
 	@Override
 	public boolean moveValid(int[] loc, Piece[][] board) {
 		if(firstMove) {
-			if(loc[0] == location[0] && loc[1] == location[1] + 2) {
+			if(loc[0] == location[0] && loc[1] == location[1] + 2 && board[loc[0]][loc[1]] == null) {
 				return true;
 			}
 		}
-		if((loc[0] == location[0] && loc[1] == location[1] + 1) ||
-		  ((loc[0] == location[0] + 1 || loc[0] == location[0] - 1) && loc[1] == location[1] + 1) && board[loc[0]][loc[1]] != null) {
+		if((loc[0] == location[0] && loc[1] == location[1] + 1 && board[loc[0]][loc[1]] == null) ||
+		  ((loc[0] == location[0] + 1 || loc[0] == location[0] - 1) && loc[1] == location[1] + 1) && spaceClear(loc, board)) {
 			return true;
 		}
 		return false;
