@@ -7,6 +7,7 @@ import com.javafxChess.pieces.*;
 import com.javafxChess.board.Board;
 import com.javafxChess.board.MoveLog;
 
+
 public class textRunner {
 	public static void main(String[] args) throws FileNotFoundException {
 		Piece[][] b = Board.makeBoard();
@@ -17,7 +18,7 @@ public class textRunner {
 		int[] s = new int[2];
 		int[] e = new int[2];
 		boolean team = true;
-		while(true) {
+		while(team) {
 			System.out.print("Enter start position (x \"enter\" y): ");
 			s[0] = in.nextInt();
 			s[1] = in.nextInt();
@@ -25,13 +26,13 @@ public class textRunner {
 			System.out.print("Enter end position (x \"enter\" y): ");
 			e[0] = in.nextInt();
 			e[1] = in.nextInt();
-			if(team == b[s[0]][s[1]].getTeam() &&
-					b[s[0]][s[1]].move(e, b, log)) {
+			if(team == b[s[0]][s[1]].getTeam() && b[s[0]][s[1]].move(e, b, log)) {
 				System.out.println("Valid move");
 				team = !team;
 			} else {
 				System.out.println("Invalid move, try again");
 			}
 		}
+		log.close();
 	}
 }
