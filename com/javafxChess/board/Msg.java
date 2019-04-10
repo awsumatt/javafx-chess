@@ -4,11 +4,11 @@ import javafx.beans.property.SimpleStringProperty;
 import com.javafxChess.pieces.*;
 
 
-public class msg{
+public class Msg{
 	private SimpleStringProperty team;
 	private SimpleStringProperty alert;
 
-	public msg(boolean team, int type){
+	public Msg(boolean team, int type){
 		if(team){
 			this.team=new SimpleStringProperty("White");
 		} else {
@@ -28,7 +28,7 @@ public class msg{
 		}
 	}
 
-	
+
 
 
 }
