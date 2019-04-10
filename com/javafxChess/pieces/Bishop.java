@@ -1,5 +1,6 @@
 package com.javafxChess.pieces;
 
+import com.javafxChess.board.MoveLog;
 import java.lang.Math;
 
 

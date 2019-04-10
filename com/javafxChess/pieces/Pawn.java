@@ -1,5 +1,7 @@
+
 package com.javafxChess.pieces;
 
+import com.javafxChess.board.MoveLog;
 import java.util.ArrayList;
 
 public class Pawn extends Piece{
@@ -17,8 +19,8 @@ public class Pawn extends Piece{
 	}
 
 	@Override
-	public boolean move(int[] loc, Piece[][] board) {
-		if(canMove(loc, board)) {
+	public boolean move(int[] loc, Piece[][] board, MoveLog log){
+		if(moveValid(loc, board)) {
 			location = loc;
 			firstMove = false;
 			return true;
@@ -26,7 +28,7 @@ public class Pawn extends Piece{
 		return false;
 	}
 
-	@Override
+	/**@Override
 	public int[][] getPosMoves(Piece[][] board) {
 		ArrayList<int[]> moves = new ArrayList<>();
 		for(int i = 0; i < 7; i++) {
@@ -38,9 +40,10 @@ public class Pawn extends Piece{
 			}
 		}
 		return (int[][]) moves.toArray();
-	}
-	
-	private boolean canMove(int[] loc, Piece[][] board) {
+	}*/
+
+	@Override
+	public boolean moveValid(int[] loc, Piece[][] board) {
 		if(firstMove) {
 			if(loc[0] == location[0] && loc[1] == location[1] + 2) {
 				return true;

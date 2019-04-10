@@ -1,34 +1,36 @@
 package com.javafxChess.board;
 
+import com.javafxChess.pieces.Piece;
 import java.lang.StringBuilder;
 import java.io.PrintWriter;
 import java.io.File;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 public class MoveLog{
 
 	/** File where game number is stored */
-	final private File gameNum = "/logs/.gameNumber";
+	final private File gameNum = new File("/logs/.gameNumber");
 	/** File where moves will be logged */
 	final private File logFile;
 	/** Writes moves to the log file */
 	final private PrintWriter writer;
 
 	/** Initializes a move log */
-	public MoveLog(){
+	public MoveLog()  throws FileNotFoundException{
 		logFile = makeNewLog();
 		writer = new PrintWriter(logFile);
 	}
 
 	/** Checks the game number, uses it to name the logfile, then sets new gameNumber for next game */
-	private String makeNewLog(){
+	private File makeNewLog() throws FileNotFoundException{
 		int num;
-		String logName;
+		File logName;
 		Scanner input = new Scanner(gameNum);
 
 		num = input.nextInt();
 		input.close();
-		logName = "chess"+num+".txt";
+		logName = new File("chess"+num+".txt");
 		num+=1;
 
 		PrintWriter write = new PrintWriter(gameNum);
@@ -44,7 +46,9 @@ public class MoveLog{
 	}
 
 	private char numToChar(int x){
-		return x+65;
+		char letter = 65;
+		letter += x;
+		return letter;
 	}
 
 	/** Converts team boolean to string */
@@ -57,13 +61,12 @@ public class MoveLog{
 	}
 
 	/** Closes log file and saves contents */
-	@Override
 	public void close(){
 		writer.close();
 	}
 
 	/** Translates the move into a string */
-	public String moveToString(Piece piece, int[] startLoc, int[] endLoc){
+	public void moveToString(Piece piece, int[] startLoc, int[] endLoc){
 		StringBuilder move = new StringBuilder();
 		move.append(boolToTeam(piece.getTeam())+" ");
 		move.append(piece+", ");
@@ -72,7 +75,7 @@ public class MoveLog{
 	}
 
 	/** Translates a piece capture into a string */
-	public String captureToString(Piece piece1, Piece piece2){
+	public void captureToString(Piece piece1, Piece piece2){
 		StringBuilder capture = new StringBuilder();
 		capture.append(boolToTeam(piece1.getTeam())+" "+piece1);
 		capture.append(" has captured ");

@@ -1,5 +1,7 @@
 package com.javafxChess.board;
 
+import com.javafxChess.pieces.*;
+
 
 
 //This class might be temporary, we might merge it into the main program

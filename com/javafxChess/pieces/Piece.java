@@ -1,5 +1,7 @@
 package com.javafxChess.pieces;
 
+import com.javafxChess.board.MoveLog;
+
 public abstract class Piece{
 
 	/** Location of a piece {x, y} */
@@ -129,7 +131,7 @@ public abstract class Piece{
 	//TODO Might get rid of this and just use move valid
 	/** Feed current or proposed location of the King */
 	public boolean canCheck(int[] loc, Piece[][] board){ //Must do as generic location to allow make it able to add to move validation for king
-		if(canMove(loc, board)){
+		if(moveValid(loc, board)){
 			check = true;
 			return true;
 		}

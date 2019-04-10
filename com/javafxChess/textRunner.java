@@ -1,9 +1,13 @@
+
 package com.javafxChess;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import com.javafxChess.pieces.*;
+import com.javafxChess.board.Board;
+import com.javafxChess.board.MoveLog;
 
-public class runner {
+public class textRunner {
 	public static void main(String[] args) throws FileNotFoundException {
 		Piece[][] b = Board.makeBoard();
 		Board.initializeBoard(b);

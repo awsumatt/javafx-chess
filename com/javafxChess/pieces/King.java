@@ -52,15 +52,15 @@ public class King extends Piece{
 	public boolean moveValid(int[] loc, Piece[][] board) {
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board.length; j++) {
-				if((board[i][j] != null || board[i][j].getName() != "Pawn") && board[i][j].moveValid(loc, board)) {
+				if((board[i][j] != null || board[i][j].toString() != "Pawn") && board[i][j].moveValid(loc, board)) {
 					return false;
-				} else if(board[i][j].getName() == "Pawn" && ((Pawn) board[i][j]).moveAttack(loc, board)) {
+				} else if(board[i][j].toString() == "Pawn" && ((Pawn) board[i][j]).moveAttack(loc, board)) {
 					return false;
 				}
 			}
 		}
-		
-		if(board[loc[0]][loc[1]].getName() == "Rook" && board[loc[0]][loc[1]].getTeam() == this.getTeam()) {
+
+		if(board[loc[0]][loc[1]].toString() == "Rook" && board[loc[0]][loc[1]].getTeam() == this.getTeam()) {
 			if(((Rook) board[loc[0]][loc[1]]).getCanCastle() && canCastle) {
 				return castle(loc, board);
 			}
@@ -68,7 +68,7 @@ public class King extends Piece{
 		return true;
 	}
 
-	
+
 	private boolean castle(int[] loc, Piece[][] board) {
 		char side = ((Rook) board[loc[0]][loc[1]]).getSide();
 		if(side == 'q') {
