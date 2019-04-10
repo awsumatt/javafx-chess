@@ -1,7 +1,10 @@
-
 package com.javafxChess;
 
 
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ListView;
 import java.io.FileNotFoundException;
@@ -23,20 +26,34 @@ public class Controller implements Initializable
 	private MoveLog log;
 	@FXML
 	private TableView table;
+	@FXML
+	private TableColumn teamCol;
+	@FXML
+	private TableColumn msgCol;
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
-    }
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle){
+	}
 
-		@FXML
-		public void startGame() throws FileNotFoundException{
-			play=true;
-			board = Board.makeBoard();
-			Board.initializeBoard(board);
-			log = new MoveLog();
+	@FXML
+	public void startGame() throws FileNotFoundException{
+		play=true;
+		board = Board.makeBoard();
+		Board.initializeBoard(board);
+		log = new MoveLog();
 
+		ObservableList<Msg> messages = FXCollections.observableArrayList(
+    new Msg(true, 1)
+		);
 
-		}
+		teamCol.setCellValueFactory(
+    	new PropertyValueFactory<Msg,String>("team")
+		);
+		msgCol.setCellValueFactory(
+    	new PropertyValueFactory<Msg,String>("alert")
+		);
+
+		table.setItems(messages);
+	}
 }

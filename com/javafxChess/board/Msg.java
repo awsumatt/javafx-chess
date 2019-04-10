@@ -29,6 +29,13 @@ public class Msg{
 	}
 
 
+	public String getTeam(){
+		return team.get();
+	}
+
+	public String getAlert(){
+		return alert.get();
+	}
 
 
 }
