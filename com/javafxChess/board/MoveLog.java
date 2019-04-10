@@ -70,7 +70,7 @@ public class MoveLog{
 		StringBuilder move = new StringBuilder();
 		move.append(boolToTeam(piece.getTeam())+" ");
 		move.append(piece+", ");
-		move.append(numToChar(startLoc[0])+numToNum(startLoc[1])+" to "+numToChar(endLoc[0])+numToNum(endLoc[1]));
+		move.append(numToChar(startLoc[0])+""+numToNum(startLoc[1])+" to "+numToChar(endLoc[0])+numToNum(endLoc[1]));
 		writer.println(move.toString());
 	}
 
