@@ -1,6 +1,7 @@
 package com.javafxChess;
 
 
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
@@ -30,7 +31,8 @@ public class Controller implements Initializable
 	private TableColumn teamCol;
 	@FXML
 	private TableColumn msgCol;
-
+	@FXML
+	private Button startBtn;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle){
@@ -38,6 +40,7 @@ public class Controller implements Initializable
 
 	@FXML
 	public void startGame() throws FileNotFoundException{
+		startBtn.setDisable(true);
 		play=true;
 		board = Board.makeBoard();
 		Board.initializeBoard(board);
@@ -55,5 +58,8 @@ public class Controller implements Initializable
 		);
 
 		table.setItems(messages);
+
+		log.close();
+		startBtn.setDisable(false);
 	}
 }
