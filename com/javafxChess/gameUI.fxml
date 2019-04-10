@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafxChess.Controller">
   <children>
     <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
@@ -99,7 +99,7 @@
                         <Rectangle id="f1" fx:id="f1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="265.0" layoutY="423.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                         <Rectangle id="g1" fx:id="g1" arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="315.0" layoutY="423.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                         <Rectangle id="h1" fx:id="h1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="365.0" layoutY="423.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
-                        <Button fx:id="startBtn" layoutX="169.0" layoutY="479.0" mnemonicParsing="false" onAction="startGame();" text="Start Game" />
+                        <Button fx:id="startBtn" layoutX="169.0" layoutY="479.0" mnemonicParsing="false" onAction="#startGame" text="Start Game" />
               </children>
             </AnchorPane>
           </content>

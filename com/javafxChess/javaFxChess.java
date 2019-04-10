@@ -16,20 +16,6 @@ import java.io.IOException;
 
 public class javaFxChess extends Application{
 
-	private boolean play = false;
-	private boolean turn = true;
-	private Piece[][] board;
-	private MoveLog log;
-
-
-	@FXML
-	public void startGame() throws FileNotFoundException{
-		play=true;
-		board = Board.makeBoard();
-		Board.initializeBoard(board);
-		log = new MoveLog();
-	}
-
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -39,6 +25,11 @@ public class javaFxChess extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
+
+
+	public static void main(String[] args) {
+    launch(args);
+}
 
 
 
