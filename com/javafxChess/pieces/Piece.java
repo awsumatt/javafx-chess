@@ -16,6 +16,8 @@ public abstract class Piece{
 	private boolean check;
 	/** Name for move log */
 	private String name;
+	/** Image of the piece */
+	private ImageView pic;
 
 	/**
 	*Initializes a piece with a specific location
@@ -26,6 +28,7 @@ public abstract class Piece{
 	public Piece(boolean team, int[] location, ImageView pic){
 		this.team = team;
 		this.location = location;
+		this.pic = pic;
 		inPlay = true;
 		check = false;
 	}
@@ -37,6 +40,7 @@ public abstract class Piece{
 	*/
 	public Piece(boolean team, ImageView Pic){
 		this.team = team;
+		this.pic = pic;
 		inPlay = true;
 		check = false;
 	}
