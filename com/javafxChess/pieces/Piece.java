@@ -1,6 +1,8 @@
 package com.javafxChess.pieces;
 
 import com.javafxChess.board.MoveLog;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
 public abstract class Piece{
 
@@ -21,7 +23,7 @@ public abstract class Piece{
 	*@param team true=white team, false=black team
 	*@param location Location in (x,y) format
 	*/
-	public Piece(boolean team, int[] location){
+	public Piece(boolean team, int[] location, ImageView pic){
 		this.team = team;
 		this.location = location;
 		inPlay = true;
@@ -33,7 +35,7 @@ public abstract class Piece{
 	*
 	*@param team true=white team, false=black team
 	*/
-	public Piece(boolean team){
+	public Piece(boolean team, ImageView Pic){
 		this.team = team;
 		inPlay = true;
 		check = false;
