@@ -1,6 +1,7 @@
 package com.javafxChess;
 
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
@@ -101,14 +102,23 @@ public class Controller implements Initializable
 	private boolean turn = true;
 	private Piece[][] board;
 	private MoveLog log;
+	private double moveX;
+	private double moveY;
 
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle){
 	}
 
+
 	@FXML
 	public void startGame() throws FileNotFoundException{
+		boardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
+	    moveX = e.getX();
+	    moveY = e.getY();
+			System.out.println(moveX);
+			System.out.println(moveY);
+	});
 		startBtn.setDisable(true);
 		play=true;
 		board = Board.makeBoard();
@@ -128,7 +138,5 @@ public class Controller implements Initializable
 
 		table.setItems(messages);
 
-		log.close();
-		startBtn.setDisable(false);
 	}
 }
