@@ -72,7 +72,7 @@ public class King extends Piece{
 	}
 
 	public boolean moveValid(int[] loc, Piece[][] board) {
-		for(int i = 0; i < board.length; i++) {
+		for(int i = 0; i < board.length; i++) { //TODO Switch this to the possCheck method because this loop is going to throw null pointer exceptions
 			for(int j = 0; j < board.length; j++) {
 				if((board[i][j] != null || board[i][j].toString() != "Pawn") && board[i][j].moveValid(loc, board)) {
 					return false;
