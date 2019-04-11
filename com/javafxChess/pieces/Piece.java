@@ -65,6 +65,14 @@ public abstract class Piece{
 		return location[1];
 	}
 
+	public GridPane getPane(){
+		return pane;
+	}
+
+	public ImageView getPic(){
+		return pic;
+	}
+
 	public boolean inplay(){
 		return inPlay;
 	}
