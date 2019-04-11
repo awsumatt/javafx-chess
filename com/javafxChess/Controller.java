@@ -134,8 +134,6 @@ public class Controller implements Initializable
 	    dubX = new Double(Math.floor(e.getX()/50));
 			moveX = dubX.intValue();
 			moveY = dubY.intValue();
-			System.out.println(moveX);
-			System.out.println(moveY);
 			clicked=true;
 	});
 		startBtn.setDisable(true);
@@ -184,6 +182,7 @@ public class Controller implements Initializable
 			} else {
 				messages.add(new Msg(turn, INV_MOVE));
 			}
+			log.close();
 			play=false;
 		}
 	}
