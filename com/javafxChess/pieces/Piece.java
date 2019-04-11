@@ -41,7 +41,7 @@ public abstract class Piece{
 	*
 	*@param team true=white team, false=black team
 	*/
-	public Piece(boolean team, ImageView Pic, GridPane pane){
+	public Piece(boolean team, ImageView pic, GridPane pane){
 		this.team = team;
 		this.pic = pic;
 		this.pane = pane;

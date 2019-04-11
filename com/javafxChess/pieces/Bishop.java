@@ -28,6 +28,8 @@ public class Bishop extends Piece{
 			location=loc;
 			ifEnemyRemove(loc, board, log);
 			board[this.getX()][this.getY()]=this;
+			GridPane.setColumnIndex(this.getPic(), loc[0]);
+			GridPane.setRowIndex(this.getPic(), loc[1]);
 			return true;
 
 		}

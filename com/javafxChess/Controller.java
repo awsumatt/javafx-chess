@@ -136,7 +136,7 @@ public class Controller implements Initializable
 		startBtn.setDisable(true);
 		play=true;
 		board = Board.makeBoard();
-		Board.initializeBoard(board, kingB, queenB, bishopB1, bishopB2, knightB1, knightB2, rookB1, rookB2, pawnB1, pawnB2, pawnB3, pawnB4, pawnB5, pawnB6, pawnB7, pawnB8, kingW, queenW, bishopW1, bishopW2, knightW1, knightW2, rookW1, rookW2, pawnW1, pawnW2, pawnW3, pawnW4, pawnW5, pawnW6, pawnW7, pawnW8);
+		Board.initializeBoard(board, boardPane, kingB, queenB, bishopB1, bishopB2, knightB1, knightB2, rookB1, rookB2, pawnB1, pawnB2, pawnB3, pawnB4, pawnB5, pawnB6, pawnB7, pawnB8, kingW, queenW, bishopW1, bishopW2, knightW1, knightW2, rookW1, rookW2, pawnW1, pawnW2, pawnW3, pawnW4, pawnW5, pawnW6, pawnW7, pawnW8);
 		ObservableList<Msg> messages = FXCollections.observableArrayList(
 		new Msg(turn, NEW_TURN)
 		);
@@ -156,7 +156,7 @@ public class Controller implements Initializable
 
 
 		while(play){
-			
+
 		}
 
 
