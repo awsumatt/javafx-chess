@@ -23,6 +23,8 @@ public class Pawn extends Piece{
 		if(moveValid(loc, board)) {
 			location = loc;
 			firstMove = false;
+			GridPane.setColumnIndex(this.getPic(), loc[0]);
+			GridPane.setRowIndex(this.getPic(), loc[1]);
 			return true;
 		}
 		log.moveInv(this);

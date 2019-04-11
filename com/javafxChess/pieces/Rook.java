@@ -34,8 +34,9 @@ public class Rook extends Piece{
 			ifEnemyRemove(loc, board, log);
 			board[this.getX()][this.getY()] = this;
 			canCastle = false;
+			GridPane.setColumnIndex(this.getPic(), loc[0]);
+			GridPane.setRowIndex(this.getPic(), loc[1]);
 			return true;
-
 		}
 		log.moveInv(this);
 		return false;

@@ -44,7 +44,8 @@ public class Queen extends Piece{
 			location=loc;
 			ifEnemyRemove(loc, board, log);
 			board[this.getX()][this.getY()]=this;
-			pic.
+			GridPane.setColumnIndex(this.getPic(), loc[0]);
+			GridPane.setRowIndex(this.getPic(), loc[1]);
 			return true;
 		}
 		log.moveInv(this);
