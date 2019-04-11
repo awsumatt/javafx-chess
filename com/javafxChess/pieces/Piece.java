@@ -18,6 +18,8 @@ public abstract class Piece{
 	private String name;
 	/** Image of the piece */
 	private ImageView pic;
+	/** GridPane of the chess board */
+	private GridPane pane;
 
 	/**
 	*Initializes a piece with a specific location
@@ -25,10 +27,11 @@ public abstract class Piece{
 	*@param team true=white team, false=black team
 	*@param location Location in (x,y) format
 	*/
-	public Piece(boolean team, int[] location, ImageView pic){
+	public Piece(boolean team, int[] location, ImageView pic, GridPane pane){
 		this.team = team;
 		this.location = location;
 		this.pic = pic;
+		this.pane = pane;
 		inPlay = true;
 		check = false;
 	}
@@ -38,9 +41,10 @@ public abstract class Piece{
 	*
 	*@param team true=white team, false=black team
 	*/
-	public Piece(boolean team, ImageView Pic){
+	public Piece(boolean team, ImageView Pic, GridPane pane){
 		this.team = team;
 		this.pic = pic;
+		this.pane = pane;
 		inPlay = true;
 		check = false;
 	}

@@ -1,5 +1,6 @@
 package com.javafxChess.pieces;
 
+import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 import com.javafxChess.board.MoveLog;
 import java.lang.Math;
@@ -12,8 +13,8 @@ public class Queen extends Piece{
 	*@param team true=white team, false=black team
 	*@param location Location in (x,y) format
 	*/
-	public Queen(boolean team, int[] location, ImageView pic){
-		super(team, location, pic);
+	public Queen(boolean team, int[] location, ImageView pic, GridPane pane){
+		super(team, location, pic, pane);
 		this.setName("Queen");
 	}
 
@@ -22,8 +23,8 @@ public class Queen extends Piece{
 	*
 	*@param team true=white team, false=black team
 	*/
-	public Queen(boolean team, ImageView pic){
-		super(team, pic);
+	public Queen(boolean team, ImageView pic, GridPane pane){
+		super(team, pic, pane);
 		if(team){ //White team default location
 			location[0] = 3;
 			location[1] = 7;
@@ -43,6 +44,7 @@ public class Queen extends Piece{
 			location=loc;
 			ifEnemyRemove(loc, board, log);
 			board[this.getX()][this.getY()]=this;
+			pic.
 			return true;
 		}
 		log.moveInv(this);

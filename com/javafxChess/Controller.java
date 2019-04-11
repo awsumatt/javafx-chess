@@ -155,8 +155,10 @@ public class Controller implements Initializable
 
 
 
+		while(play){
+			
+		}
 
-		table.setItems(messages);
 
 	}
 }
