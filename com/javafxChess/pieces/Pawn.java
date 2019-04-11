@@ -24,6 +24,7 @@ public class Pawn extends Piece{
 			firstMove = false;
 			return true;
 		}
+		log.moveInv(this);
 		return false;
 	}
 

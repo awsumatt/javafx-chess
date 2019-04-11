@@ -1,12 +1,16 @@
 package com.javafxChess.board;
 
 import javafx.beans.property.SimpleStringProperty;
-import com.javafxChess.pieces.*;
 
 
 public class Msg{
 	private SimpleStringProperty team;
 	private SimpleStringProperty alert;
+	final private int INV_MOVE = 0;
+	final private int NEW_TURN = 1;
+	final private int PIECE_CAP = 2;
+	final private int CHECK = 3;
+	final private int WIN = 69;
 
 	public Msg(boolean team, int type){
 		if(team){
@@ -15,15 +19,15 @@ public class Msg{
 			this.team=new SimpleStringProperty("Black");
 		}
 
-		if(type==0){
+		if(type==INV_MOVE){
 			alert=new SimpleStringProperty("Move invalid!");
-		}else if(type==1){
+		}else if(type==NEW_TURN){
 			alert=new SimpleStringProperty("Your turn!");
-		} else if(type==2){
+		} else if(type==PIECE_CAP){
 			alert=new SimpleStringProperty("Your piece has been captured!");
-		} else if (type==3){
+		} else if (type==CHECK){
 			alert=new SimpleStringProperty("You are in check!");
-		} else if (type==69){
+		} else if (type==WIN){
 			alert=new SimpleStringProperty("You win!");
 		}
 	}

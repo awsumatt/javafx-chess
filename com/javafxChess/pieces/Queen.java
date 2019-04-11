@@ -45,6 +45,7 @@ public class Queen extends Piece{
 			board[this.getX()][this.getY()]=this;
 			return true;
 		}
+		log.moveInv(this);
 		return false;
 	}
 

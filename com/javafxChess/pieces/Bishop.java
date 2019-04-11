@@ -30,6 +30,7 @@ public class Bishop extends Piece{
 			return true;
 
 		}
+		log.moveInv(this);
 		return false;
 	}
 

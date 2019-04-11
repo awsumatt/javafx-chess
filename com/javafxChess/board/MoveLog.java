@@ -1,11 +1,13 @@
 package com.javafxChess.board;
 
+import javafx.collections.ObservableList;
 import com.javafxChess.pieces.Piece;
 import java.lang.StringBuilder;
 import java.io.PrintWriter;
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import com.javafxChess.board.Msg;
 
 public class MoveLog{
 
@@ -15,9 +17,17 @@ public class MoveLog{
 	final private File logFile;
 	/** Writes moves to the log file */
 	final private PrintWriter writer;
+	/** Message output */
+	final private ObservableList<Msg> messages;
+	final private int INV_MOVE = 0;
+	final private int NEW_TURN = 1;
+	final private int PIECE_CAP = 2;
+	final private int CHECK = 3;
+	final private int WIN = 69;
 
 	/** Initializes a move log */
-	public MoveLog()  throws FileNotFoundException{
+	public MoveLog(ObservableList<Msg> messages)  throws FileNotFoundException{
+		this.messages = messages;
 		logFile = makeNewLog();
 		writer = new PrintWriter(logFile);
 	}
@@ -72,6 +82,7 @@ public class MoveLog{
 		move.append(piece+", ");
 		move.append(numToChar(startLoc[0])+""+numToNum(startLoc[1])+" to "+numToChar(endLoc[0])+numToNum(endLoc[1]));
 		writer.println(move.toString());
+		messages.add(new Msg(!piece.getTeam(), NEW_TURN));
 	}
 
 	/** Translates a piece capture into a string */
@@ -81,6 +92,21 @@ public class MoveLog{
 		capture.append(" has captured ");
 		capture.append(boolToTeam(piece2.getTeam())+" "+piece2+"!");
 		writer.println(capture.toString());
+		messages.add(new Msg(piece2.getTeam(), PIECE_CAP));
+	}
+
+	/** Translates king in check to string */
+	public void checkToString(Piece piece1, Piece piece2){
+		StringBuilder capture = new StringBuilder();
+		capture.append(boolToTeam(piece1.getTeam())+" "+piece1);
+		capture.append(" has put ");
+		capture.append(boolToTeam(piece2.getTeam())+" "+piece2+" in check!");
+		writer.println(capture.toString());
+		messages.add(new Msg(piece2.getTeam(), CHECK));
+	}
+
+	public void moveInv(Piece piece){
+		messages.add(new Msg(piece.getTeam(), INV_MOVE));
 	}
 
 

@@ -38,6 +38,7 @@ public class Knight extends Piece{
 			board[this.getX()][this.getY()]=this;
 			return true;
 		}
+		log.moveInv(this);
 		return false;
 	}
 

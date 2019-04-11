@@ -68,6 +68,7 @@ public class King extends Piece{
 			canCastle = false;
 			return true;
 		}
+		log.moveInv(this);
 		return false;
 	}
 

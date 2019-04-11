@@ -1,5 +1,6 @@
 package com.javafxChess.board;
 
+import javafx.collections.ObservableList;
 import javafx.scene.image.ImageView;
 import com.javafxChess.pieces.*;
 

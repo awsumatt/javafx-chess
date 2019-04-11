@@ -79,10 +79,10 @@ public abstract class Piece{
 	}
 
 	public boolean spaceClear(int[] loc, Piece[][] board){
-		if(board[loc[0]][loc[1]] == null){
+		if(board[loc[0]][loc[1]] == null){ //Space empty
 			return true;
 		}
-		if (board[loc[0]][loc[1]].getTeam() != this.getTeam()) {
+		if (board[loc[0]][loc[1]].getTeam() != this.getTeam()) { //Space enemy
 			return true;
 		}
 		return false;
