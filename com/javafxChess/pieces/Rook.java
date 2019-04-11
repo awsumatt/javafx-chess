@@ -1,5 +1,6 @@
 package com.javafxChess.pieces;
 
+import javafx.scene.image.ImageView;
 import com.javafxChess.board.MoveLog;
 
 public class Rook extends Piece{
@@ -11,8 +12,8 @@ public class Rook extends Piece{
 	*@param team true=white team, false=black team
 	*@param location Location in (x,y) format
 	*/
-	public Rook(boolean team, int[] location) {
-		super(team, location);
+	public Rook(boolean team, int[] location, ImageView pic) {
+		super(team, location, pic);
 		this.setName("Rook");
 		canCastle = true;
 	}
@@ -24,7 +25,7 @@ public class Rook extends Piece{
 	 * @return True if the move is valid, false otherwise
 	 */
 	@Override
-	public boolean move(int[] loc, Piece[][] board, MoveLog log) { 
+	public boolean move(int[] loc, Piece[][] board, MoveLog log) {
 		if(moveValid(loc, board)){
 			board[this.getX()][this.getY()] = null;
 			log.moveToString(this, location, loc);

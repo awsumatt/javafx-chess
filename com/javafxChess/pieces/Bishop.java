@@ -1,5 +1,6 @@
 package com.javafxChess.pieces;
 
+import javafx.scene.image.ImageView;
 import com.javafxChess.board.MoveLog;
 import java.lang.Math;
 
@@ -12,8 +13,8 @@ public class Bishop extends Piece{
 	*@param team true=white team, false=black team
 	*@param location Location in (x,y) format
 	*/
-	public Bishop(boolean team, int[] location){
-		super(team, location);
+	public Bishop(boolean team, int[] location, ImageView pic){
+		super(team, location, pic);
 		this.setName("Bishop");
 	}
 

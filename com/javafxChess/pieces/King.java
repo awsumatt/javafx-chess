@@ -1,5 +1,6 @@
 package com.javafxChess.pieces;
 
+import javafx.scene.image.ImageView;
 import com.javafxChess.board.MoveLog;
 import java.lang.Math;
 
@@ -12,8 +13,8 @@ public class King extends Piece{
 	*@param location Location in (x,y) format
 	*@param log Logger that the move will be stored in
 	*/
-	public King(boolean team, int[] location, MoveLog log){
-		super(team, location);
+	public King(boolean team, int[] location, MoveLog log, ImageView pic){
+		super(team, location, pic);
 		this.setName("King");
 	}
 
@@ -22,8 +23,8 @@ public class King extends Piece{
 	*
 	*@param team true=white team, false=black team
 	*/
-	public King(boolean team){
-		super(team);
+	public King(boolean team, ImageView pic){
+		super(team, pic);
 		if(team){ //White team default location
 			location[0] = 4;
 			location[1] = 7;

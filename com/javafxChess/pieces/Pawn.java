@@ -1,6 +1,6 @@
-
 package com.javafxChess.pieces;
 
+import javafx.scene.image.ImageView;
 import com.javafxChess.board.MoveLog;
 
 public class Pawn extends Piece{
@@ -12,8 +12,8 @@ public class Pawn extends Piece{
 	*@param team true=white team, false=black team
 	*@param location Location in (x,y) format
 	*/
-	public Pawn(boolean team, int[] location){
-		super(team, location);
+	public Pawn(boolean team, int[] location, ImageView pic){
+		super(team, location, pic);
 		this.setName("Pawn");
 	}
 

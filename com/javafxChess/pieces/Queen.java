@@ -1,5 +1,6 @@
 package com.javafxChess.pieces;
 
+import javafx.scene.image.ImageView;
 import com.javafxChess.board.MoveLog;
 import java.lang.Math;
 
@@ -11,8 +12,8 @@ public class Queen extends Piece{
 	*@param team true=white team, false=black team
 	*@param location Location in (x,y) format
 	*/
-	public Queen(boolean team, int[] location){
-		super(team, location);
+	public Queen(boolean team, int[] location, ImageView pic){
+		super(team, location, pic);
 		this.setName("Queen");
 	}
 
@@ -21,8 +22,8 @@ public class Queen extends Piece{
 	*
 	*@param team true=white team, false=black team
 	*/
-	public Queen(boolean team){
-		super(team);
+	public Queen(boolean team, ImageView pic){
+		super(team, pic);
 		if(team){ //White team default location
 			location[0] = 3;
 			location[1] = 7;
