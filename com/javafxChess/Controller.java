@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.lang.Math;
+import javafx.concurrent.Task;
 
 
 
@@ -108,7 +109,11 @@ public class Controller implements Initializable
 	private int moveY;
 	private Double dubX;
 	private Double dubY;
+	private int[] start;
+	private int[] end;
+	final private int INV_MOVE = 0;
 	final private int NEW_TURN = 1;
+
 
 
 	@Override
@@ -142,6 +147,13 @@ public class Controller implements Initializable
 		);
 		log = new MoveLog(messages);
 
+		Task game = new Task<Void>() {
+    @Override public Void call() {
+			playGame(messages);
+			return null;
+    }
+};
+
 
 
 		teamCol.setCellValueFactory(
@@ -153,12 +165,28 @@ public class Controller implements Initializable
 
 		table.setItems(messages);
 
-
-
-		while(play){
-
-		}
-
-
+		new Thread(game).start();
 	}
+
+
+
+
+	private void playGame(ObservableList<Msg> messages){
+		while(play){
+			start = getMove();
+			if(board[start[0]][start[1]] != null){
+				if (board[start[0]][start[1]].getTeam()==turn) {
+					end = getMove();
+					board[start[0]][start[1]].move(end, board, log);
+				} else {
+					messages.add(new Msg(turn, INV_MOVE));
+				}
+			} else {
+				messages.add(new Msg(turn, INV_MOVE));
+			}
+			play=false;
+		}
+	}
+
+
 }
