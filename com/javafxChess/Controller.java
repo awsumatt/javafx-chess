@@ -131,7 +131,7 @@ public class Controller implements Initializable
 	public void startGame() throws FileNotFoundException{
 		boardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
 	    dubX = new Double(Math.floor(e.getX()/50));
-	    dubX = new Double(Math.floor(e.getX()/50));
+	    dubY = new Double(Math.floor(e.getY()/50));
 			moveX = dubX.intValue();
 			moveY = dubY.intValue();
 			clicked=true;
