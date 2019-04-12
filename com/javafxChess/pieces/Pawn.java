@@ -21,6 +21,7 @@ public class Pawn extends Piece{
 	@Override
 	public boolean move(int[] loc, Piece[][] board, MoveLog log){
 		if(moveValid(loc, board)) {
+			log.moveToString(this, location, loc);
 			location = loc;
 			firstMove = false;
 			GridPane.setColumnIndex(this.getPic(), loc[0]);
@@ -34,12 +35,12 @@ public class Pawn extends Piece{
 	@Override
 	public boolean moveValid(int[] loc, Piece[][] board) {
 		if(firstMove) {
-			if(loc[0] == location[0] && loc[1] == location[1] + 2 && board[loc[0]][loc[1]] == null) {
+			if(loc[0] == location[0] && ((loc[1] == location[1] + 2 && this.getTeam()) || (loc[1] == location[1] - 2 && !this.getTeam())) && board[loc[0]][loc[1]] == null) {
 				return true;
 			}
 		}
 		if((loc[0] == location[0] && loc[1] == location[1] + 1 && board[loc[0]][loc[1]] == null) ||
-		  ((loc[0] == location[0] + 1 || loc[0] == location[0] - 1) && loc[1] == location[1] + 1) && spaceClear(loc, board)) {
+		  ((loc[0] == location[0] + 1 ||( loc[0] == location[0] - 1) && loc[1] == location[1] + 1) )&& spaceClear(loc, board)) {
 			return true;
 		}
 		return false;

@@ -148,13 +148,13 @@ public abstract class Piece{
 			for (int i=xStart; i<xEnd; i++) {
 				for (int j=yStart; j<yEnd; j++) {
 					if(board[i][j] instanceof Piece){
-						return true;
+						return false;
 					}
 				}
 			}
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 

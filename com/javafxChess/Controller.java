@@ -1,29 +1,42 @@
 package com.javafxChess;
 
-
-import javafx.scene.input.MouseEvent;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.control.Button;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ListView;
-import java.io.FileNotFoundException;
+import javafx.scene.input.KeyCode;
 import com.javafxChess.board.*;
 import com.javafxChess.pieces.*;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.lang.Math;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.lang.Math;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+
+
+import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.ListView;
+import com.javafxChess.board.*;
+import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
+import java.util.ResourceBundle;
 import javafx.concurrent.Task;
 
 
-
+@SuppressWarnings("unchecked")
 public class Controller implements Initializable
 {
 	@FXML
@@ -111,6 +124,7 @@ public class Controller implements Initializable
 	private Double dubY;
 	private int[] start;
 	private int[] end;
+	private int moveNum = 1;
 	final private int INV_MOVE = 0;
 	final private int NEW_TURN = 1;
 
@@ -118,24 +132,25 @@ public class Controller implements Initializable
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle){
+		boardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
+			dubX = new Double(Math.floor(e.getX()/50));
+			dubY = new Double(Math.floor(e.getY()/50));
+			moveX = dubX.intValue();
+			moveY = dubY.intValue();
+			System.out.println(moveX+", "+moveY);
+		});
+		table.setOnKeyPressed(e -> {
+    if (e.getCode() == KeyCode.UP) {
+			log.close();
+			startBtn.setDisable(false);
+			play=false;
+    }
+		});
 	}
 
-
-	public int[] getMove(){
-		while(!clicked){}
-			clicked = false;
-		return new int[]{moveX, moveY};
-	}
 
 	@FXML
 	public void startGame() throws FileNotFoundException{
-		boardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
-	    dubX = new Double(Math.floor(e.getX()/50));
-	    dubY = new Double(Math.floor(e.getY()/50));
-			moveX = dubX.intValue();
-			moveY = dubY.intValue();
-			clicked=true;
-	});
 		startBtn.setDisable(true);
 		play=true;
 		board = Board.makeBoard();
@@ -145,13 +160,12 @@ public class Controller implements Initializable
 		);
 		log = new MoveLog(messages);
 
-		Task game = new Task<Void>() {
-    @Override public Void call() {
-			playGame(messages);
-			return null;
-    }
-};
-
+		Task<Void> game = new Task<Void>() {
+    	@Override public Void call(){
+				playGame(messages);
+				return null;
+    	}
+		};
 
 
 		teamCol.setCellValueFactory(
@@ -166,26 +180,73 @@ public class Controller implements Initializable
 		new Thread(game).start();
 	}
 
+	public void move1(){
+		start = new int[]{1, 7};
+		end = new int[]{2, 5};
+	}
+	public void move2(){
+		start = new int[]{1, 0};
+		end = new int[]{2, 2};
+	}
+	public void move3(){
+		start = new int[]{1, 6};
+		end = new int[]{1, 4};
+	}
+	public void move4(){
+		start = new int[]{3, 1};
+		end = new int[]{3, 3};
+	}
+	public void move5(){
+		start = new int[]{3, 0};
+		end = new int[]{3, 2};
+	}
+	public void move6(){
+		start = new int[]{2, 7};
+		end = new int[]{0, 5};
+	}
+	public void move7(){
+		start = new int[]{3, 1};
+		end = new int[]{3, 3};
+	}
+
+
+
+
 
 
 
 	private void playGame(ObservableList<Msg> messages){
 		while(play){
-			start = getMove();
+			switch(moveNum){
+				case 1: move1();
+					break;
+				case 2: move2();
+					break;
+				case 3: move3();
+					break;
+				case 4: move4();
+					break;
+				case 5: move5();
+					break;
+				case 6: move6();
+					break;
+				case 7: move7();
+					break;
+			}
+			try{Thread.sleep(2000);} catch(InterruptedException e){}
 			if(board[start[0]][start[1]] != null){
 				if (board[start[0]][start[1]].getTeam()==turn) {
-					end = getMove();
-					board[start[0]][start[1]].move(end, board, log);
+						board[start[0]][start[1]].move(end, board, log);
+						turn = !turn;
+						moveNum+=1;
+					} else {
+						messages.add(new Msg(turn, INV_MOVE));
+					}
 				} else {
 					messages.add(new Msg(turn, INV_MOVE));
 				}
-			} else {
-				messages.add(new Msg(turn, INV_MOVE));
 			}
-			log.close();
-			play=false;
 		}
-	}
 
 
 }
