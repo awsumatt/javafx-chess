@@ -48,7 +48,10 @@ JavaFX chess uses object oriented programming to play a variety of chess variant
   - Finished piece logic
   - Began work on move log
   - Planned UI
-- Planned for next week
-  - Finish UI
-  - Finish move log
-  - Finish project
+### Week 4
+- Completed this week
+  - Finished Move log
+  - Began UI
+### Week 5
+- Completed this week
+  - Continued work on UI
