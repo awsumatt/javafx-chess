@@ -161,18 +161,6 @@ public abstract class Piece{
 		return false;
 	}
 
-
-	//TODO Might get rid of this and just use move valid
-	/** Feed current or proposed location of the King */
-	public boolean canCheck(int[] loc, Piece[][] board){ //Must do as generic location to allow make it able to add to move validation for king
-		if(moveValid(loc, board)){
-			check = true;
-			return true;
-		}
-		check = false;
-		return false;
-	}
-
 	/**
 	*Moves piece, logs move, removes enemy if necessary
 	*
