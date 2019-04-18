@@ -25,6 +25,7 @@ public class Queen extends Piece{
 	*/
 	public Queen(boolean team, ImageView pic, GridPane pane){
 		super(team, pic, pane);
+		this.setName("Queen");
 		if(team){ //White team default location
 			location[0] = 3;
 			location[1] = 7;
