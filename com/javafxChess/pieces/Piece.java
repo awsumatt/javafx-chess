@@ -34,6 +34,7 @@ public abstract class Piece{
 		this.pane = pane;
 		inPlay = true;
 		check = false;
+		this.pic.managedProperty().bind(this.pic.visibleProperty());
 	}
 
 	/**
@@ -47,6 +48,7 @@ public abstract class Piece{
 		this.pane = pane;
 		inPlay = true;
 		check = false;
+		this.pic.managedProperty().bind(this.pic.visibleProperty());
 	}
 
 	public boolean getTeam(){
@@ -79,6 +81,7 @@ public abstract class Piece{
 
 	public void remove(){
 		inPlay = false;
+		this.pic.setVisible(false);
 	}
 
 	public void setName(String name){
