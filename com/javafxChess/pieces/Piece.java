@@ -90,6 +90,7 @@ public abstract class Piece{
 		return name;
 	}
 
+	/** Checks if space is occupied by a friendly piece */
 	public boolean spaceClear(int[] loc, Piece[][] board){
 		if(board[loc[0]][loc[1]] == null){ //Space empty
 			return true;
@@ -170,13 +171,29 @@ public abstract class Piece{
 	}
 
 	/**
+	*Moves piece, logs move, removes enemy if necessary
+	*
 	*@param loc Location player wants to move the piece
 	*@param board The board
 	*@param log Logger that the move will be stored in
 	*
 	*@return True if move valid, false otherwise
 	*/
-	public abstract boolean move(int[] loc, Piece[][] board, MoveLog log);
+	public boolean move(int[] loc, Piece[][] board, MoveLog log){
+		if(moveValid(loc, board)){
+			board[this.getX()][this.getY()]=null;
+			log.moveToString(this, location, loc);
+			location=loc;
+			ifEnemyRemove(loc, board, log);
+			board[this.getX()][this.getY()]=this;
+			GridPane.setColumnIndex(this.getPic(), loc[0]);
+			GridPane.setRowIndex(this.getPic(), loc[1]);
+			return true;
+
+		}
+		log.moveInv(this);
+		return false;
+	}
 
 	/**
 	*Checks if a move can be made
