@@ -21,7 +21,7 @@ public class Bishop extends Piece{
 
 	@Override
 	public boolean moveValid(int[] loc, Piece[][] board){
-		if(pathBlocked(loc, board)){
+		if(pathClear(loc, board)){
 			if(Math.abs(loc[0]-super.getX())==Math.abs(loc[1]-super.getY())){ //Diagonal
 				return true;
 			}

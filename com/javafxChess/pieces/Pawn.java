@@ -40,9 +40,9 @@ public class Pawn extends Piece{
 
 	/** Checks if pawn is moving forward */
 	private boolean moveForward(int[] loc, Piece[][] board){
-		if(!this.getTeam() && firstMove && (loc[1]-this.getY()==2 || loc[1]-this.getY()==1)){
+		if(!this.getTeam() && firstMove && (loc[1]-this.getY()==2 || loc[1]-this.getY()==1) && pathClear(loc, board)){
 			return true;
-		} else if(this.getTeam() && firstMove && (this.getY()-loc[1]==2 || this.getY()-loc[1]==1)){
+		} else if(this.getTeam() && firstMove && (this.getY()-loc[1]==2 || this.getY()-loc[1]==1) && pathClear(loc, board)){
 			return true;
 		} else if(!this.getTeam() && loc[1]-this.getY()==1){
 			return true;

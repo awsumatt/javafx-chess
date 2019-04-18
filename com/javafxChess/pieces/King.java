@@ -36,7 +36,7 @@ public class King extends Piece{
 
 	}
 
-	public boolean possCheck(Piece[][] board, int[] loc){
+	public boolean possCheck(int[] loc, Piece[][] board){
 		for (int i=0; i<9; i++) {
 			for (int j=0; j<9; j++) {
 				if(board[i][j] instanceof Piece){
@@ -49,7 +49,7 @@ public class King extends Piece{
 		return false;
 	}
 
-	// Move length calculators for Knight move validation
+	//Move length calculators
 	private int yLength(int[] loc){
 		return Math.abs(this.getY()-loc[1]);
 	}
@@ -59,56 +59,9 @@ public class King extends Piece{
 	}
 
 	@Override
-	public boolean move(int[] loc, Piece[][] board, MoveLog log){
-		if(moveValid(loc, board)){
-			board[this.getX()][this.getY()] = null;
-			log.moveToString(this, location, loc);
-			location = loc;
-			ifEnemyRemove(loc, board, log);
-			board[this.getX()][this.getY()] = this;
-			canCastle = false;
-			GridPane.setColumnIndex(this.getPic(), loc[0]);
-			GridPane.setRowIndex(this.getPic(), loc[1]);
-			return true;
-		}
-		log.moveInv(this);
-		return false;
-	}
-
 	public boolean moveValid(int[] loc, Piece[][] board) {
-		for(int i = 0; i < board.length; i++) { //TODO Switch this to the possCheck method because this loop is going to throw null pointer exceptions
-			for(int j = 0; j < board.length; j++) {
-				if((board[i][j] != null || board[i][j].toString() != "Pawn") && board[i][j].moveValid(loc, board)) {
-					return false;
-				} else if(board[i][j].toString() == "Pawn" && ((Pawn) board[i][j]).moveValid(loc, board)) { //TODO This change is likely incorrect but im just trying to get it to work
-					return false;
-				}
-			}
-		}
-
-		if(board[loc[0]][loc[1]].toString() == "Rook" && board[loc[0]][loc[1]].getTeam() == this.getTeam()) {
-			if(((Rook) board[loc[0]][loc[1]]).getCanCastle() && canCastle) {
-				return castle(loc, board);
-			}
-		}
-
-		if(xLength(loc) <= 1 && yLength(loc) <= 1 && !possCheck(board, loc)){
-			return true;
-		}
-		return false;
-	}
-
-
-	private boolean castle(int[] loc, Piece[][] board) {
-		char side = ((Rook) board[loc[0]][loc[1]]).getSide();
-		if(side == 'q') {
-			int[] check = {2, this.getY()};
-			if(!pathBlocked(check, board)) {
-				return true;
-			}
-		} else if(side == 'k') {
-			int[] check = {6, this.getY()};
-			if(!pathBlocked(check, board)) {
+		if(!possCheck(loc, board)){
+			if(pathClear(loc, board) && xLength(loc)+yLength(loc)<=2){
 				return true;
 			}
 		}

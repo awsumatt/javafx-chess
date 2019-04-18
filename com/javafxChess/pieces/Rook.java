@@ -19,7 +19,7 @@ public class Rook extends Piece{
 
 
 	public boolean moveValid(int[] loc, Piece[][] board) {
-		if(pathBlocked(loc, board)) {
+		if(pathClear(loc, board)) {
 			if(super.getX()==loc[0]){ //Vertical
 				return true;
 			} else if(super.getY()==loc[1]){ //Horizontal

@@ -120,7 +120,7 @@ public abstract class Piece{
 	*
 	*@return false if path blocked, true if path clear
 	*/
-	public boolean pathBlocked(int[] loc, Piece[][] board){
+	public boolean pathClear(int[] loc, Piece[][] board){
 		int xStart;
 		int xEnd;
 		int yStart;
