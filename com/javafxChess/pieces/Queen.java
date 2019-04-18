@@ -37,23 +37,6 @@ public class Queen extends Piece{
 
 
 	@Override
-	public boolean move(int[] loc, Piece[][] board, MoveLog log){
-		if(moveValid(loc, board)){
-			board[this.getX()][this.getY()]=null;
-			log.moveToString(this, location, loc);
-			location=loc;
-			ifEnemyRemove(loc, board, log);
-			board[this.getX()][this.getY()]=this;
-			GridPane.setColumnIndex(this.getPic(), loc[0]);
-			GridPane.setRowIndex(this.getPic(), loc[1]);
-			return true;
-		}
-		log.moveInv(this);
-		return false;
-	}
-
-
-	@Override
 	public boolean moveValid(int[] loc, Piece[][] board){
 		if(pathBlocked(loc, board)){
 			if(super.getX()==loc[0]){ //Vertical
