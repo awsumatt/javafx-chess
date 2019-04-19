@@ -14,12 +14,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-
 <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafxChess.Controller">
 <items>
 <AnchorPane id="Content" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="450.0">
   <children>
-            <Button fx:id="startBtn" layoutX="169.0" layoutY="494.0" mnemonicParsing="false" onAction="#startGame" text="Start Game" />
+            <Button fx:id="startBtn" layoutX="128.0" layoutY="489.0" mnemonicParsing="false" onAction="#startGame" text="Start Game" />
             <GridPane fx:id="boardPane" layoutX="16.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="400.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -378,6 +377,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </GridPane>
+            <Button fx:id="endBtn" disable="true" layoutX="242.0" layoutY="489.0" mnemonicParsing="false" onAction="#endGame" text="End Game" />
   </children>
          <cursor>
             <Cursor fx:constant="DEFAULT" />

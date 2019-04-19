@@ -48,6 +48,8 @@ public class Controller implements Initializable
 	@FXML
 	private Button startBtn;
 	@FXML
+	private Button endBtn;
+	@FXML
 	private GridPane boardPane;
 	@FXML
 	private ImageView kingB;
@@ -124,7 +126,6 @@ public class Controller implements Initializable
 	private Double dubY;
 	private int[] start;
 	private int[] end;
-	private int moveNum = 1;
 	final private int INV_MOVE = 0;
 	final private int NEW_TURN = 1;
 
@@ -137,21 +138,23 @@ public class Controller implements Initializable
 			dubY = new Double(Math.floor(e.getY()/50));
 			moveX = dubX.intValue();
 			moveY = dubY.intValue();
+			clicked = true;
 			System.out.println(moveX+", "+moveY);
-		});
-		table.setOnKeyPressed(e -> {
-    if (e.getCode() == KeyCode.UP) {
-			log.close();
-			startBtn.setDisable(false);
-			play=false;
-    }
 		});
 	}
 
+	@FXML
+	public void endGame(){
+		play = false;
+		log.close();
+		startBtn.setDisable(false);
+		endBtn.setDisable(true);
+	}
 
 	@FXML
 	public void startGame() throws FileNotFoundException{
 		startBtn.setDisable(true);
+		endBtn.setDisable(false);
 		play=true;
 		board = Board.makeBoard();
 		Board.initializeBoard(board, boardPane, kingB, queenB, bishopB1, bishopB2, knightB1, knightB2, rookB1, rookB2, pawnB1, pawnB2, pawnB3, pawnB4, pawnB5, pawnB6, pawnB7, pawnB8, kingW, queenW, bishopW1, bishopW2, knightW1, knightW2, rookW1, rookW2, pawnW1, pawnW2, pawnW3, pawnW4, pawnW5, pawnW6, pawnW7, pawnW8);
@@ -180,65 +183,18 @@ public class Controller implements Initializable
 		new Thread(game).start();
 	}
 
-	public void move1(){
-		start = new int[]{1, 7};
-		end = new int[]{2, 5};
-	}
-	public void move2(){
-		start = new int[]{1, 0};
-		end = new int[]{2, 2};
-	}
-	public void move3(){
-		start = new int[]{1, 6};
-		end = new int[]{1, 4};
-	}
-	public void move4(){
-		start = new int[]{3, 1};
-		end = new int[]{3, 3};
-	}
-	public void move5(){
-		start = new int[]{3, 0};
-		end = new int[]{3, 2};
-	}
-	public void move6(){
-		start = new int[]{2, 7};
-		end = new int[]{0, 5};
-	}
-	public void move7(){
-		start = new int[]{3, 1};
-		end = new int[]{3, 3};
-	}
-
-
-
-
-
-
-
 	private void playGame(ObservableList<Msg> messages){
 		while(play){
-			switch(moveNum){
-				case 1: move1();
-					break;
-				case 2: move2();
-					break;
-				case 3: move3();
-					break;
-				case 4: move4();
-					break;
-				case 5: move5();
-					break;
-				case 6: move6();
-					break;
-				case 7: move7();
-					break;
-			}
-			try{Thread.sleep(2000);} catch(InterruptedException e){}
+			while(!clicked){try{Thread.sleep(100);} catch(InterruptedException e){}}
+			start = new int[]{moveX, moveY};
+			clicked = false;
 			if(board[start[0]][start[1]] != null){
 				if (board[start[0]][start[1]].getTeam()==turn) {
+						while(!clicked){try{Thread.sleep(100);} catch(InterruptedException e){}}
+						end = new int[]{moveX, moveY};
+						clicked = false;
 						board[start[0]][start[1]].move(end, board, log);
 						turn = !turn;
-						moveNum+=1;
 					} else {
 						messages.add(new Msg(turn, INV_MOVE));
 					}
