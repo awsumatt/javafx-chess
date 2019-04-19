@@ -26,6 +26,7 @@ public class King extends Piece{
 	*/
 	public King(boolean team, ImageView pic, GridPane pane){
 		super(team, pic, pane);
+		this.setName("King");
 		if(team){ //White team default location
 			location[0] = 4;
 			location[1] = 7;
