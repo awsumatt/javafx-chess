@@ -11,6 +11,9 @@ Chess is cool and fun to play.
 ### How
 JavaFX chess uses object oriented programming to play a variety of chess variants. This allows the player to have new and fun experiences with the same classic game. The game keeps a log of players' moves for future review.
 
+###Demo
+[![JavaFX Chess Demo](http://img.youtube.com/vi/szHYbA9Kkx8/0.jpg)](http://www.youtube.com/watch?v=szHYbA9Kkx8)
+
 ## Deliverables
 1. Game Frontend
 2. Backend logic
