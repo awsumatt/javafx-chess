@@ -2,7 +2,7 @@ package com.javafxChess.board;
 
 import javafx.beans.property.SimpleStringProperty;
 
-
+/** Creates messages to prompt user */
 public class Msg{
 	private SimpleStringProperty team;
 	private SimpleStringProperty alert;

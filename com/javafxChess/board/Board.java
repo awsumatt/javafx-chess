@@ -14,12 +14,14 @@ public class Board{
 			return new Piece[8][8];
 		}
 		/**
-		*Creates a piece
+		*Creates a piece array with new piece objects
 		*
 		*@param ImageView The image associated with each piece
 		*/
 		public static void initializeBoard(Piece[][] board, GridPane pane, ImageView kingB, ImageView queenB, ImageView bishopB1, ImageView bishopB2, ImageView knightB1, ImageView knightB2, ImageView rookB1, ImageView rookB2, ImageView pawnB1, ImageView pawnB2, ImageView pawnB3, ImageView pawnB4, ImageView pawnB5, ImageView pawnB6, ImageView pawnB7, ImageView pawnB8, ImageView kingW, ImageView queenW, ImageView bishopW1, ImageView bishopW2, ImageView knightW1, ImageView knightW2, ImageView rookW1, ImageView rookW2, ImageView pawnW1, ImageView pawnW2, ImageView pawnW3, ImageView pawnW4, ImageView pawnW5, ImageView pawnW6, ImageView pawnW7, ImageView pawnW8){
-			//Black Team
+			//////////////
+			//Black Team//
+			//////////////
 			ImageView[] bPawns = new ImageView[]{pawnB1, pawnB2, pawnB3, pawnB4, pawnB5, pawnB6, pawnB7, pawnB8};
 			board[0][0] = new Rook(false, new int[]{0, 0}, rookB1, pane);
 			board[7][0] = new Rook(false, new int[]{7, 0}, rookB2, pane);
@@ -33,7 +35,9 @@ public class Board{
 				board[i][1] = new Pawn(false, new int[]{i, 1}, bPawns[i], pane);
 			}
 
-			//White Team
+			//////////////
+			//White Team//
+			//////////////
 			ImageView[] wPawns = new ImageView[]{pawnW1, pawnW2, pawnW3, pawnW4, pawnW5, pawnW6, pawnW7, pawnW8};
 			board[0][7] = new Rook(true, new int[]{0, 7}, rookW1, pane);
 			board[7][7] = new Rook(true, new int[]{7, 7}, rookW2, pane);
