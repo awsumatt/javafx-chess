@@ -39,10 +39,22 @@ JavaFX chess uses object oriented programming to play a variety of chess variant
 
 - Week 2
 
-  - Game board backend
-  - Piece superclass
-  - Subclass for each piece
+  - Piece super-class
 
+- Week 3
+
+  - Piece sub-classes
+  - Move Log
+  - UI Design
+
+- Week 4
+
+  - UI
+
+- Week 5
+
+  - UI
+  
 ## Team
 - Matt Jones, Programmer
 - Liam Dickinson, Programmer
