@@ -39,6 +39,9 @@ import javafx.concurrent.Task;
 @SuppressWarnings("unchecked")
 public class Controller implements Initializable
 {
+	////////////////
+	// UI Elements//
+	////////////////
 	@FXML
 	private TableView table;
 	@FXML
@@ -115,6 +118,9 @@ public class Controller implements Initializable
 	private ImageView pawnW7;
 	@FXML
 	private ImageView pawnW8;
+	/////////////////////////
+	// Game Logic Variables//
+	/////////////////////////
 	private boolean play = false;
 	private boolean turn = true;
 	private boolean clicked = false;
@@ -129,22 +135,19 @@ public class Controller implements Initializable
 	final private int INV_MOVE = 0;
 	final private int NEW_TURN = 1;
 
-
-
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle){
-		boardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{
+		boardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->{ //Interpret clicks as a chess board coordinate
 			dubX = new Double(Math.floor(e.getX()/50));
 			dubY = new Double(Math.floor(e.getY()/50));
 			moveX = dubX.intValue();
 			moveY = dubY.intValue();
-			clicked = true;
-			System.out.println(moveX+", "+moveY);
+			clicked = true; //User input flag
 		});
 	}
 
 	@FXML
-	public void endGame(){
+	public void endGame(){ //Saves Log
 		play = false;
 		log.close();
 		startBtn.setDisable(false);
@@ -163,14 +166,14 @@ public class Controller implements Initializable
 		);
 		log = new MoveLog(messages);
 
-		Task<Void> game = new Task<Void>() {
+		Task<Void> game = new Task<Void>() { //Puts game loop on separate thread
     	@Override public Void call(){
 				playGame(messages);
 				return null;
     	}
 		};
 
-
+		//Table is for message output
 		teamCol.setCellValueFactory(
 			new PropertyValueFactory<Msg,String>("team")
 		);
@@ -180,12 +183,12 @@ public class Controller implements Initializable
 
 		table.setItems(messages);
 
-		new Thread(game).start();
+		new Thread(game).start(); //Starts game thread
 	}
 
-	private void playGame(ObservableList<Msg> messages){
+	private void playGame(ObservableList<Msg> messages){ //Game loop
 		while(play){
-			while(!clicked){try{Thread.sleep(100);} catch(InterruptedException e){}}
+			while(!clicked){try{Thread.sleep(100);} catch(InterruptedException e){}} //Wait for user input
 			start = new int[]{moveX, moveY};
 			clicked = false;
 			if(board[start[0]][start[1]] != null){

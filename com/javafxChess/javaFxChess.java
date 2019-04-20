@@ -19,7 +19,7 @@ public class javaFxChess extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("gameUI.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("gameUI.fxml")); //Scene builder UI file
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("JavaFX Chess");
 		primaryStage.setScene(scene);

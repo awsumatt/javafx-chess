@@ -34,7 +34,7 @@ public abstract class Piece{
 		this.pane = pane;
 		inPlay = true;
 		check = false;
-		this.pic.managedProperty().bind(this.pic.visibleProperty());
+		this.pic.managedProperty().bind(this.pic.visibleProperty()); //When a piece is made invisible it is also automatically removed from UI placement calculations
 	}
 
 	/**
@@ -79,11 +79,13 @@ public abstract class Piece{
 		return inPlay;
 	}
 
+	/** Makes piece invisible */
 	public void remove(){
 		inPlay = false;
 		this.pic.setVisible(false);
 	}
 
+	/** Sets name for logging purposes */
 	public void setName(String name){
 		this.name = name;
 	}
